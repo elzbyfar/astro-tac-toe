@@ -25,5 +25,4 @@ export const INITIAL_GAME_STATE = {
   setHumanTurn: (humanTurn: boolean) => {},
   setResult: (result: Result) => {},
   setMetadata: (metadata: Metadata) => {}
-
 };
