@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Background from "../components/Background.astro";
+import GameSettingCard from "../components/GameSettingCard/index.tsx";
+---
+
+<Layout title="Tic Tac Toe">
+  <main
+    class="overflow-hidden mx-auto relative w-[100vw] flex justify-center items-center h-screen max-w-[1520px] bg-white shadow-[0_0px_20px_5px_rgba(0,0,0,0.4)]"
+  >
+    <GameSettingCard client:load />
+    <Background />
+  </main>
+</Layout>
