@@ -19,12 +19,16 @@ export default function StartOrRestart() {
   const stats = useStore(statsStore);
   const result = useStore(resultStore);
 
-  function handleStart() {
+  function handleStart(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    event.preventDefault();
     setActiveGame(true);
     setActiveRound(true);
   }
 
-  function handleRestart() {
+  function handleRestart(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    event.preventDefault();
     setStats({
       ...stats,
       round: stats.round + 1,
@@ -39,7 +43,7 @@ export default function StartOrRestart() {
   return (
     <div className="group flex box-border justify-center select-none">
       <button
-        onClick={activeGame ? () => handleRestart() : () => handleStart()}
+        onClick={activeGame ? (e) => handleRestart(e) : (e) => handleStart(e)}
         className={`${
           activeGame && !activeRound
             ? "bg-blue-400 px-4 text-white font-light group-hover:bg-blue-500 group-hover:text-white hover:shadow-[0_0_5px_1px_#afafaf]"

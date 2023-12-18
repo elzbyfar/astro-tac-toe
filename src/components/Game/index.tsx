@@ -8,6 +8,7 @@ import SelectDifficulty from "./SelectDifficulty.tsx";
 import HintButton from "./HintButton.tsx";
 import UndoButton from "./UndoButton.tsx";
 import StartOrRestart from "./StartOrRestart.tsx";
+import ExitButton from "./ExitButton.tsx";
 
 export default function Game() {
   const activeGame = useStore(activeGameStore);
@@ -35,6 +36,7 @@ export default function Game() {
           <HintButton />
         </div>
         <StartOrRestart />
+        <ExitButton />
       </div>
     </>
   );

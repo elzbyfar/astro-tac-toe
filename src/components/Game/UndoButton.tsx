@@ -15,7 +15,8 @@ export default function UndoButton() {
   const isHumanTurn = useStore(isHumanTurnStore);
   const undidPrevMove = useStore(undidPrevMoveStore);
 
-  function handleUndo() {
+  function handleUndo(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    event.preventDefault();
     if (moveStack.length === 0) return;
     const withoutAi = [...moveStack];
     withoutAi.pop();
@@ -34,7 +35,7 @@ export default function UndoButton() {
       disabled={
         moveStack.length === 0 || !activeRound || !isHumanTurn || undidPrevMove
       }
-      onClick={handleUndo}
+      onClick={(e) => handleUndo(e)}
     >
       <img
         src={undo.src}

@@ -15,7 +15,8 @@ export default function HintButton() {
   const moveStack = useStore(moveStackStore);
   const stats = useStore(statsStore);
 
-  function handleHint() {
+  function handleHint(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    event.preventDefault();
     const forHuman = true;
     const hintSelection = findBestMove(moveStack, stats.difficulty, forHuman);
 
@@ -28,7 +29,7 @@ export default function HintButton() {
   return (
     <button
       className="flex flex-col items-center justify-center disabled:opacity-30 disabled:bg-transparent hover:bg-blue-200 px-4 py-2 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_5px_1px_#afafaf] disabled:hover:shadow-none select-none"
-      onClick={handleHint}
+      onClick={(e) => handleHint(e)}
       disabled={!activeRound || !isHumanTurn}
     >
       <img
