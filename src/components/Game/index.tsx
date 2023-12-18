@@ -19,7 +19,8 @@ export default function Game() {
     cardMd: "md:max-w-screen-sm",
     bgBlur: `transition-all duration-700 ease-in absolute top-0 left-0 w-full h-full z-[1]`,
     bgBlurVisibility: `${activeGame ? "backdrop-blur-xs bg-slate-50/70" : ""}`,
-    gameButtons: `justify-between w-full px-[42px] py-8`,
+    gameButtons: `justify-between w-full px-0 py-2`,
+    gameButtonsMd: "md:px-10 md:py-8",
     gameButtonsVisibility: `${activeGame ? "flex" : "hidden"}`,
   };
 

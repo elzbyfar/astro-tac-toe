@@ -12,6 +12,7 @@ import {
   setResult,
 } from "../../lib/state";
 import { INITIAL_RESULT } from "../../lib/constants.ts";
+import { stylesReducer } from "../../lib/utils.ts";
 
 export default function StartOrRestart() {
   const activeGame = useStore(activeGameStore);
@@ -19,15 +20,15 @@ export default function StartOrRestart() {
   const stats = useStore(statsStore);
   const result = useStore(resultStore);
 
-  function handleStart(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+
+  function handleStart(event: ReactMouseEvent) {
     event.preventDefault();
     setActiveGame(true);
     setActiveRound(true);
   }
 
-  function handleRestart(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) {
+  function handleRestart(event: ReactMouseEvent) {
     event.preventDefault();
     setStats({
       ...stats,
@@ -40,26 +41,37 @@ export default function StartOrRestart() {
     setResult(INITIAL_RESULT);
   }
 
+  const className = {
+    wrapper: "group flex box-border justify-center select-none",
+    button: `relative flex items-center tracking-widest pt-1 text-base h-full z-10 duration-100 ease-in-out rounded-md`,
+    buttonActive: `${
+      activeGame && !activeRound
+        ? "bg-blue-400 px-4 text-white font-light"
+        : "text-blue-900 font-extralight"
+    }`,
+    buttonActiveLg: `${
+      activeGame && !activeRound
+        ? "lg:group-hover:bg-blue-500 lg:group-hover:text-white lg:hover:shadow-[0_0_2px_1px_#afafaf]"
+        : "lg:group-hover:text-blue-400"
+    }`,
+    text: "relative border-b-2 border-transparent ease-in-out group-hover:z-10",
+    underlineLg: "lg:bg-blue-400 lg:h-1 lg:w-0 lg:ease-in-out lg:duration-300",
+    underlineActiveLg: `${
+      activeGame && !activeRound ? "" : "lg:group-hover:w-full"
+    }`,
+  };
+
+  const styles = stylesReducer(className);
+
   return (
-    <div className="group flex box-border justify-center select-none">
+    <div className={styles("wrapper")}>
       <button
         onClick={activeGame ? (e) => handleRestart(e) : (e) => handleStart(e)}
-        className={`${
-          activeGame && !activeRound
-            ? "bg-blue-400 px-4 text-white font-light group-hover:bg-blue-500 group-hover:text-white hover:shadow-[0_0_2px_1px_#afafaf]"
-            : "text-blue-900 font-extralight group-hover:text-blue-400"
-        } relative flex items-center tracking-widest pt-1 text-base h-full z-10 duration-100 ease-in-out rounded-md`}
+        className={styles("button")}
       >
-        <span
-          style={{ fontFamily: "Jura" }}
-          className="relative border-b-2 border-transparent ease-in-out group-hover:z-10"
-        >
+        <span style={{ fontFamily: "Jura" }} className={styles("text")}>
           {activeGame ? "RESTART" : "START"}
-          <div
-            className={`${
-              activeGame && !activeRound ? "" : "group-hover:w-full"
-            } bg-blue-400 h-1 w-0 ease-in-out duration-300`}
-          ></div>
+          <div className={styles("underline")}></div>
         </span>
       </button>
     </div>
