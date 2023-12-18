@@ -1,17 +1,17 @@
 import { useStore } from "@nanostores/react";
-import { activeGameStore, statsStore } from "../../lib/state.ts";
+import { activeGameStore, statsStore } from "../../lib/globalState.ts";
+import { stylesReducer } from "../../lib/utils.ts";
+import type { StatDisplayProps } from "../../lib/types.ts";
 
-type StatDisplayProps = {
-  label: string;
-  value: number | string;
-  valueStyle?: string;
-};
 const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
   const className = {
     wrapper: "flex flex-col items-center gap-y-[6px] text-blue-900 select-none",
   };
+
+  const styles = stylesReducer(className);
+
   return (
-    <div className={className.wrapper}>
+    <div className={styles("wrapper")}>
       <span style={{ fontFamily: "Jura" }} className="text-[11px]">
         {label}
       </span>

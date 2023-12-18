@@ -6,7 +6,7 @@ import {
   undidPrevMoveStore,
   setMoveStack,
   setUndidPrevMove,
-} from "../../lib/state";
+} from "../../lib/globalState";
 import undo from "../../assets/undo.svg";
 
 export default function UndoButton() {

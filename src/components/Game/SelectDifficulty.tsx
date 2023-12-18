@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { activeGameStore, statsStore, setStats } from "../../lib/state";
+import { activeGameStore, statsStore, setStats } from "../../lib/globalState";
 import { GAME_DIFFICULTIES } from "../../lib/constants";
 import { stylesReducer } from "../../lib/utils";
 import type { ChangeEvent } from "react";

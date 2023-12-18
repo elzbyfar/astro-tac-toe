@@ -10,11 +10,11 @@ import {
   setActiveRound,
   setStats,
   setResult,
-} from "../../lib/state";
+} from "../../lib/globalState.ts";
 import { INITIAL_RESULT } from "../../lib/constants.ts";
 import { stylesReducer } from "../../lib/utils.ts";
 
-export default function StartOrRestart() {
+export default function PlayAgainButton() {
   const activeGame = useStore(activeGameStore);
   const activeRound = useStore(activeRoundStore);
   const stats = useStore(statsStore);
@@ -42,7 +42,8 @@ export default function StartOrRestart() {
   }
 
   const className = {
-    wrapper: "group flex box-border justify-center select-none",
+    wrapper: "group box-border justify-center select-none",
+    wrapperVisibility: `${activeRound ? "hidden" : "flex"}`,
     button: `relative flex items-center tracking-widest py-1 text-base h-full z-10 duration-100 ease-in-out rounded-md`,
     buttonActive: `${
       activeGame && !activeRound
@@ -70,7 +71,7 @@ export default function StartOrRestart() {
         className={styles("button")}
       >
         <span style={{ fontFamily: "Jura" }} className={styles("text")}>
-          {activeGame ? "RESTART" : "START"}
+          PLAY AGAIN
           <div className={styles("underline")}></div>
         </span>
       </button>

@@ -20,3 +20,9 @@ export type Stats = {
 export type StyleObject = {
   [key: string]: string;
 };
+
+export type StatDisplayProps = {
+  label: string;
+  value: number | string;
+  valueStyle?: string;
+};

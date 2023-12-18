@@ -16,7 +16,7 @@ import {
   setResult,
   setMoveStack,
   setIsHumanTurn,
-} from "../../lib/state.ts";
+} from "../../lib/globalState.ts";
 import "../../styles/square.css";
 import { stylesReducer } from "../../lib/utils.ts";
 

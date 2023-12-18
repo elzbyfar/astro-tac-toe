@@ -1,20 +1,3 @@
-import { useStore } from "@nanostores/react";
-import {
-  activeGameStore,
-  activeRoundStore,
-  moveStackStore,
-  isHumanTurnStore,
-  undidPrevMoveStore,
-  resultStore,
-  statsStore,
-  setStats,
-  setResult,
-  setMoveStack,
-  setActiveRound,
-  setIsHumanTurn,
-  setUndidPrevMove,
-} from "./state";
-
 import type { Move, Result, StyleObject } from "./types";
 import { WINNING_SCENARIOS } from "./constants";
 

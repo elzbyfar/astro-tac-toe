@@ -7,7 +7,7 @@ import {
   setResult,
   setMoveStack,
   setActiveRound,
-} from "../../lib/state";
+} from "../../lib/globalState";
 import { INITIAL_RESULT, INITIAL_STATS } from "../../lib/constants";
 import { stylesReducer } from "../../lib/utils";
 

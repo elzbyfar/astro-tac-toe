@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { activeGameStore, sizeStore } from "../../lib/state.ts";
+import { activeGameStore, sizeStore } from "../../lib/globalState.ts";
 import { stylesReducer } from "../../lib/utils.ts";
 import Square from "./Square";
 

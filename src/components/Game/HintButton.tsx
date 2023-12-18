@@ -6,7 +6,7 @@ import {
   moveStackStore,
   statsStore,
   setHint,
-} from "../../lib/state";
+} from "../../lib/globalState";
 import { findBestMove, stylesReducer } from "../../lib/utils";
 
 export default function HintButton() {
@@ -36,9 +36,11 @@ export default function HintButton() {
     text: "text-[10px]",
   };
 
+  const styles = stylesReducer(className);
+
   return (
     <button
-      className={className.button}
+      className={styles("button")}
       onClick={(e) => handleHint(e)}
       disabled={!activeRound || !isHumanTurn}
     >
@@ -48,9 +50,9 @@ export default function HintButton() {
         width="28px"
         height="28px"
         style={{ transform: "scaleX(-1)" }}
-        className={className.icon}
+        className={styles("icon")}
       />
-      <span style={{ fontFamily: "Jura" }} className={className.text}>
+      <span style={{ fontFamily: "Jura" }} className={styles("text")}>
         HINT
       </span>
     </button>
