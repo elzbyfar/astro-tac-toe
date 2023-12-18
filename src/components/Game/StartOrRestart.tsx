@@ -43,7 +43,7 @@ export default function StartOrRestart() {
 
   const className = {
     wrapper: "group flex box-border justify-center select-none",
-    button: `relative flex items-center tracking-widest pt-1 text-base h-full z-10 duration-100 ease-in-out rounded-md`,
+    button: `relative flex items-center tracking-widest py-1 text-base h-full z-10 duration-100 ease-in-out rounded-md`,
     buttonActive: `${
       activeGame && !activeRound
         ? "bg-blue-400 px-4 text-white font-light"
