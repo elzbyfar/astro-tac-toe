@@ -7,7 +7,7 @@ import {
   statsStore,
   setHint,
 } from "../../lib/state";
-import { findBestMove } from "../../lib/utils";
+import { findBestMove, stylesReducer } from "../../lib/utils";
 
 export default function HintButton() {
   const activeRound = useStore(activeRoundStore);
@@ -26,23 +26,31 @@ export default function HintButton() {
     }, 600);
   }
 
+  const className = {
+    button:
+      "flex flex-col items-center justify-center px-4 py-2 rounded-full transition-all duration-300 ease-in-out",
+    buttonDisabled:
+      "disabled:hover:shadow-none select-none disabled:opacity-30 disabled:bg-transparent",
+    buttonHoverLg: "lg:hover:shadow-[0_0_5px_1px_#afafaf] lg:hover:bg-blue-200",
+    icon: "transition-all duration-300 ease-in-out",
+    text: "text-[10px]",
+  };
+
   return (
     <button
-      className="flex flex-col items-center justify-center disabled:opacity-30 disabled:bg-transparent hover:bg-blue-200 px-4 py-2 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_5px_1px_#afafaf] disabled:hover:shadow-none select-none"
+      className={className.button}
       onClick={(e) => handleHint(e)}
       disabled={!activeRound || !isHumanTurn}
     >
       <img
-        src={undo.src} // same icon styled differently
+        src={undo.src} // same as undo icon, but styled differently
         alt="hint button"
         width="28px"
         height="28px"
-        style={{
-          transform: "scaleX(-1)",
-        }}
-        className="transition-all duration-300 ease-in-out"
+        style={{ transform: "scaleX(-1)" }}
+        className={className.icon}
       />
-      <span style={{ fontFamily: "Jura" }} className="text-[10px]">
+      <span style={{ fontFamily: "Jura" }} className={className.text}>
         HINT
       </span>
     </button>
