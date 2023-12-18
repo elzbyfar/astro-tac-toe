@@ -1,5 +1,4 @@
 import { useStore } from "@nanostores/react";
-import type { Stats } from "../../lib/types";
 import { activeGameStore, statsStore } from "../../lib/state.ts";
 
 type StatDisplayProps = {
@@ -8,8 +7,11 @@ type StatDisplayProps = {
   valueStyle?: string;
 };
 const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
+  const className = {
+    wrapper: "flex flex-col items-center gap-y-[6px] text-blue-900 select-none",
+  };
   return (
-    <div className="flex flex-col items-center gap-y-[6px] text-blue-900 select-none">
+    <div className={className.wrapper}>
       <span style={{ fontFamily: "Jura" }} className="text-[11px]">
         {label}
       </span>
@@ -23,12 +25,11 @@ const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
 export default function ActiveStats() {
   const activeGame = useStore(activeGameStore);
   const stats = useStore(statsStore);
+  const className = {
+    wrapper: `${activeGame ? "flex" : "hidden"} w-full justify-between py-4`,
+  };
   return (
-    <div
-      className={`${
-        activeGame ? "flex" : "hidden"
-      } w-full justify-between py-4`}
-    >
+    <div className={className.wrapper}>
       <div className="flex pl-4">
         <StatDisplay
           label={`${stats.difficulty} mode`}

@@ -16,3 +16,7 @@ export type Stats = {
   losses: number;
   draws: number;
 };
+
+export type StyleObject = {
+  [key: string]: string;
+};

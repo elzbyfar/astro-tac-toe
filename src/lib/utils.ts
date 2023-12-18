@@ -15,7 +15,7 @@ import {
   setUndidPrevMove,
 } from "./state";
 
-import type { Move, Result } from "./types";
+import type { Move, Result, StyleObject } from "./types";
 import { WINNING_SCENARIOS } from "./constants";
 
 export function findWinner(player: string, moves: Move[]) {
@@ -192,4 +192,23 @@ export function blockOrWin(updatedStack: Move[]) {
 
   const random = Math.floor(Math.random() * aiCanPlay.length);
   return aiCanPlay[random];
+}
+
+export function stylesReducer(styleObject: StyleObject) {
+  // this function takes a style object and returns a function that
+  // trades a base string for a string containing tailwind classes for all breakpoints
+
+  return (input: string | string[]) => {
+    let classes: string = "";
+
+    const bases: string[] = Array.isArray(input) ? input : [input];
+    for (const base of bases) {
+      for (const [key, styles] of Object.entries(styleObject)) {
+        if (key.startsWith(base)) {
+          classes += styles + " ";
+        }
+      }
+    }
+    return classes;
+  };
 }
