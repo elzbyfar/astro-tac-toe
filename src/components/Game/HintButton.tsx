@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import undo from "./UndoButton.svg";
+import undo from "../../assets/undo.svg";
 import {
   activeRoundStore,
   isHumanTurnStore,

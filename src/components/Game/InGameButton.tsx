@@ -8,7 +8,7 @@ import {
   setMoveStack,
   setUndidPrevMove,
 } from "../../lib/state";
-import undo from "./UndoButton.svg";
+import undo from "../../assets/undo.svg";
 
 export default function InGameButton({
   label,
