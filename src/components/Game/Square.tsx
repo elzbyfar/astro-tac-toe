@@ -18,6 +18,7 @@ import {
   setIsHumanTurn,
 } from "../../lib/state.ts";
 import "../../styles/square.css";
+import { stylesReducer } from "../../lib/utils.ts";
 
 export default function Square({ index: squareIndex }: { index: number }) {
   const activeGame = useStore(activeGameStore);
@@ -109,10 +110,12 @@ export default function Square({ index: squareIndex }: { index: number }) {
   }
 
   const className = {
-    button: `${
-      hint === squareIndex ? "bg-blue-400/30" : ""
-    } square relative justify-center text-[5rem] items-center h-32 w-32 transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
+    square: `square relative justify-center text-[5rem] items-center h-20 w-20 transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
+    squareMd: "md:h-32 md:w-32",
+    squareWithHint: `${hint === squareIndex ? "bg-blue-400/30" : ""}`,
   };
+
+  const styles = stylesReducer(className);
 
   const isDisabled =
     !activeRound ||
@@ -121,7 +124,7 @@ export default function Square({ index: squareIndex }: { index: number }) {
 
   return (
     <button
-      className={className.button}
+      className={styles("square")}
       style={{ fontFamily: "Bungee", color: handleColor(squareIndex) }}
       onClick={() => handlePlay(squareIndex)}
       disabled={isDisabled}

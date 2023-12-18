@@ -16,7 +16,7 @@ export default function Game() {
 
   const className = {
     card: "w-[90%] transition-all duration-300 bg-slate-50 z-10 py-6 flex flex-col rounded-xl justify-evenly items-center opacity-100 shadow-[0_0_20px_3px_#afafaf] px-10",
-    cardMd: "md:w-[450px]",
+    cardMd: "md:max-w-screen-sm",
     bgBlur: `transition-all duration-700 ease-in absolute top-0 left-0 w-full h-full z-[1]`,
     bgBlurVisibility: `${activeGame ? "backdrop-blur-xs bg-slate-50/70" : ""}`,
     gameButtons: `justify-between w-full px-[42px] py-8`,

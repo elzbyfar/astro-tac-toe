@@ -46,9 +46,9 @@ export default function StartOrRestart() {
         onClick={activeGame ? (e) => handleRestart(e) : (e) => handleStart(e)}
         className={`${
           activeGame && !activeRound
-            ? "bg-blue-400 px-4 text-white font-light group-hover:bg-blue-500 group-hover:text-white hover:shadow-[0_0_5px_1px_#afafaf]"
-            : "text-blue-900 font-extralight group-hover:text-blue-400 group-hover:font-bold"
-        } relative flex items-center tracking-widest pt-1 text-base h-full z-10 duration-300 ease-in-out rounded-md`}
+            ? "bg-blue-400 px-4 text-white font-light group-hover:bg-blue-500 group-hover:text-white hover:shadow-[0_0_2px_1px_#afafaf]"
+            : "text-blue-900 font-extralight group-hover:text-blue-400"
+        } relative flex items-center tracking-widest pt-1 text-base h-full z-10 duration-100 ease-in-out rounded-md`}
       >
         <span
           style={{ fontFamily: "Jura" }}
@@ -58,7 +58,7 @@ export default function StartOrRestart() {
           <div
             className={`${
               activeGame && !activeRound ? "" : "group-hover:w-full"
-            } bg-blue-400 h-1 w-0 ease-in-out duration-700`}
+            } bg-blue-400 h-1 w-0 ease-in-out duration-300`}
           ></div>
         </span>
       </button>
