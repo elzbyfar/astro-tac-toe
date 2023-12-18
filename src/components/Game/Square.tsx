@@ -110,8 +110,8 @@ export default function Square({ index: squareIndex }: { index: number }) {
   }
 
   const className = {
-    square: `square relative justify-center text-[5rem] items-center h-20 w-20 transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
-    squareMd: "md:h-32 md:w-32",
+    square: `square relative justify-center text-[3rem] items-center h-20 w-20 transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
+    squareMd: "md:h-32 md:w-32 md:text-[5rem]",
     squareWithHint: `${hint === squareIndex ? "bg-blue-400/30" : ""}`,
   };
 
