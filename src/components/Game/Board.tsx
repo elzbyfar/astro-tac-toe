@@ -10,7 +10,7 @@ export default function Board() {
   const squares = Array.from({ length: size * size }, (_, i) => i);
 
   const className = {
-    container: `duration-300 transition-all overflow-hidden box-border w-60 flex flex-wrap`,
+    container: `duration-300 transition-all overflow-hidden box-border w-60 flex flex-wrap pt-8`,
     containerMd: `md:w-96`,
     containerVisibility: `${activeGame ? "h-60" : "h-0"}`,
     containerVisibilityMd: `${activeGame ? "md:h-96" : "h-0"}`,
