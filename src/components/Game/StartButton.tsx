@@ -20,9 +20,12 @@ export default function StartButton() {
     wrapper: "group box-border justify-center select-none",
     wrapperVisibility: `${activeGame ? "hidden" : "flex"}`,
     button: `relative flex items-center tracking-widest py-1 text-base h-full z-10 duration-100 ease-in-out text-blue-900 font-extralight`,
+    buttonMd: "md:bg-none",
     buttonHoverLg: "lg:group-hover:text-blue-400",
     text: "relative border-b-2 border-transparent ease-in-out group-hover:z-10",
-    underlineLg: "lg:bg-blue-400 lg:h-1 lg:w-0 lg:ease-in-out lg:duration-300",
+    underline: "hidden",
+    underlineLg:
+      "lg:block lg:bg-blue-400 lg:h-1 lg:w-0 lg:ease-in-out lg:duration-300",
     underlineHoverLg: "lg:group-hover:w-full",
   };
 
