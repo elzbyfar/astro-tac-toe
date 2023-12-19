@@ -37,8 +37,9 @@ export default function PlayAgainButton() {
       !activeRound ? "backdrop-blur-[7px] bg-slate/10" : "relative"
     }`,
     wrapper: "flex justify-center select-none overflow-hidden",
-    button: `absolute bg-blue-400 px-4 text-slate-200 font-light top-1/2 -translate-y-[70%] tracking-widest py-2 z-10 duration-200 ease-in-out rounded-md text-sm`,
-    buttonMd: "md:text-base",
+    button: `absolute bg-blue-400 px-4 text-white font-light top-1/2 -translate-y-[70%] tracking-widest py-2 z-10 duration-200 ease-in-out rounded-md text-sm`,
+    buttonMd: "md:text-base ",
+    buttonLg: "lg:text-slate-200",
     buttonVisibility: `${activeRound ? "hidden" : "flex"}`,
     buttonHoverLg:
       "lg:hover:bg-blue-500 lg:hover:text-white lg:hover:shadow-[0_0_8px_1px_#8f8f8f]",
