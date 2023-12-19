@@ -26,3 +26,5 @@ export type StatDisplayProps = {
   value: number | string;
   valueStyle?: string;
 };
+
+export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;

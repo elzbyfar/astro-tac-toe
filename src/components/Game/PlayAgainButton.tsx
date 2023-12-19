@@ -1,32 +1,22 @@
 import { useStore } from "@nanostores/react";
+import { stylesReducer } from "../../lib/utils.ts";
+import { INITIAL_RESULT } from "../../lib/constants.ts";
 import {
   resultStore,
-  activeGameStore,
   activeRoundStore,
   statsStore,
   setIsHumanTurn,
   setMoveStack,
-  setActiveGame,
   setActiveRound,
   setStats,
   setResult,
 } from "../../lib/globalState.ts";
-import { INITIAL_RESULT } from "../../lib/constants.ts";
-import { stylesReducer } from "../../lib/utils.ts";
+import type { ReactMouseEvent } from "../../lib/types.ts";
 
 export default function PlayAgainButton() {
-  const activeGame = useStore(activeGameStore);
   const activeRound = useStore(activeRoundStore);
   const stats = useStore(statsStore);
   const result = useStore(resultStore);
-
-  type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
-
-  function handleStart(event: ReactMouseEvent) {
-    event.preventDefault();
-    setActiveGame(true);
-    setActiveRound(true);
-  }
 
   function handleRestart(event: ReactMouseEvent) {
     event.preventDefault();
@@ -60,7 +50,7 @@ export default function PlayAgainButton() {
     <div className={styles("wrapper")}>
       <div className={styles("bgBlur")}></div>
       <button
-        onClick={activeGame ? (e) => handleRestart(e) : (e) => handleStart(e)}
+        onClick={handleRestart}
         className={styles("button")}
         style={{ fontFamily: "Jura" }}
       >

@@ -42,7 +42,7 @@ export default function HintButton() {
   return (
     <button
       className={styles("button")}
-      onClick={(e) => handleHint(e)}
+      onClick={handleHint}
       disabled={!activeRound || !isHumanTurn}
     >
       <img

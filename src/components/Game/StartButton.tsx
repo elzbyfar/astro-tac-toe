@@ -1,16 +1,14 @@
 import { useStore } from "@nanostores/react";
+import { stylesReducer } from "../../lib/utils.ts";
+import type { ReactMouseEvent } from "../../lib/types.ts";
 import {
   activeGameStore,
   setActiveGame,
   setActiveRound,
 } from "../../lib/globalState.ts";
 
-import { stylesReducer } from "../../lib/utils.ts";
-
 export default function StartButton() {
   const activeGame = useStore(activeGameStore);
-
-  type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
   function handleStart(event: ReactMouseEvent) {
     event.preventDefault();

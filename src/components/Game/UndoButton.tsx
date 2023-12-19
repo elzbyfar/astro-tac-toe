@@ -1,4 +1,5 @@
 import { useStore } from "@nanostores/react";
+import { stylesReducer } from "../../lib/utils";
 import {
   activeRoundStore,
   moveStackStore,
@@ -7,8 +8,8 @@ import {
   setMoveStack,
   setUndidPrevMove,
 } from "../../lib/globalState";
+import type { ReactMouseEvent } from "../../lib/types";
 import undo from "../../assets/undo.svg";
-import { stylesReducer } from "../../lib/utils";
 
 export default function UndoButton() {
   const moveStack = useStore(moveStackStore);
@@ -16,7 +17,7 @@ export default function UndoButton() {
   const isHumanTurn = useStore(isHumanTurnStore);
   const undidPrevMove = useStore(undidPrevMoveStore);
 
-  function handleUndo(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleUndo(event: ReactMouseEvent) {
     event.preventDefault();
     if (moveStack.length === 0) return;
     const withoutAi = [...moveStack];
