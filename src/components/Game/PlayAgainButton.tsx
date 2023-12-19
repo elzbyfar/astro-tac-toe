@@ -42,10 +42,14 @@ export default function PlayAgainButton() {
   }
 
   const className = {
+    bgBlur: `transition-all duration-1000 ease-in-out absolute top-0 overflow-hidden left-0 w-full h-full z-[1]`,
+    bgBlurVisibility: `${
+      !activeRound ? "backdrop-blur-[5px] bg-slate/10" : "relative"
+    }`,
     wrapper: "flex justify-center select-none overflow-hidden",
-    button: `absolute top-1/2 -translate-y-[83%] tracking-widest py-2 z-10 duration-100 ease-in-out rounded-md text-xs`,
+    button: `absolute bg-blue-400 px-4 text-white font-light top-1/2 -translate-y-[70%] tracking-widest py-2 z-10 duration-100 ease-in-out rounded-md text-sm`,
+    buttonMd: "md:text-base",
     buttonVisibility: `${activeRound ? "hidden" : "flex"}`,
-    buttonActive: "bg-blue-400 px-4 text-white font-light",
     buttonActiveLg:
       "lg:group-hover:bg-blue-500 lg:group-hover:text-white lg:hover:shadow-[0_0_2px_1px_#afafaf]",
   };
@@ -54,6 +58,7 @@ export default function PlayAgainButton() {
 
   return (
     <div className={styles("wrapper")}>
+      <div className={styles("bgBlur")}></div>
       <button
         onClick={activeGame ? (e) => handleRestart(e) : (e) => handleStart(e)}
         className={styles("button")}

@@ -5,8 +5,7 @@ import type { StatDisplayProps } from "../../lib/types.ts";
 
 const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
   const className = {
-    wrapper:
-      "flex justify-center items-center gap-x-1 text-blue-900 select-none",
+    wrapper: "flex justify-center gap-x-[2px] text-blue-900 select-none",
   };
 
   const styles = stylesReducer(className);
@@ -16,7 +15,7 @@ const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
       <span style={{ fontFamily: "Jura" }} className="text-[11px]">
         {label}:
       </span>
-      <span className={`text-xs ${valueStyle}`}>{value}</span>
+      <span className={`text-[11px] font-semibold ${valueStyle}`}>{value}</span>
     </div>
   );
 };

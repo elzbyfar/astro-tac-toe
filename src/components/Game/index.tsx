@@ -20,7 +20,7 @@ export default function Game() {
     cardMd: "md:max-w-screen-sm",
     bgBlur: `transition-all duration-700 ease-in absolute top-0 left-0 w-full h-full z-[1]`,
     bgBlurVisibility: `${activeGame ? "backdrop-blur-xs bg-slate-50/70" : ""}`,
-    inGameButtons: `grid grid-cols-3 w-full px-[54px] py-4`,
+    inGameButtons: `grid grid-cols-3 w-full px-[54px] pb-2`,
     inGameButtonsMd: "md:px-32",
     inGameButtonsVisibility: `${activeGame ? "flex" : "hidden"}`,
   };
