@@ -5,7 +5,8 @@ import type { StatDisplayProps } from "../../lib/types.ts";
 
 const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
   const className = {
-    wrapper: "flex flex-col items-center gap-y-[6px] text-blue-900 select-none",
+    wrapper:
+      "flex justify-center items-center gap-x-1 text-blue-900 select-none",
   };
 
   const styles = stylesReducer(className);
@@ -13,11 +14,9 @@ const StatDisplay = ({ label, value, valueStyle = "" }: StatDisplayProps) => {
   return (
     <div className={styles("wrapper")}>
       <span style={{ fontFamily: "Jura" }} className="text-[11px]">
-        {label}
+        {label}:
       </span>
-      <span style={{ fontFamily: "Nanum Brush Script" }} className={valueStyle}>
-        {value}
-      </span>
+      <span className={`text-xs ${valueStyle}`}>{value}</span>
     </div>
   );
 };
@@ -26,33 +25,27 @@ export default function ActiveStats() {
   const activeGame = useStore(activeGameStore);
   const stats = useStore(statsStore);
   const className = {
-    wrapper: `${activeGame ? "flex" : "hidden"} w-full justify-between py-4`,
+    wrapper: "absolute grid grid-cols-3 bottom-0 w-full pb-2",
+    wrapperMd: "md:px-32",
+    wrapperVisibility: `${activeGame ? "flex" : "hidden"}`,
   };
+  const styles = stylesReducer(className);
   return (
-    <div className={className.wrapper}>
-      <div className="flex pl-4">
+    <div className={styles("wrapper")}>
+      <StatDisplay label="round" value={stats.round} />
+      <StatDisplay label="mode" value={stats.difficulty} />
+      <div className="flex gap-x-2 justify-center text-xs">
         <StatDisplay
-          label={`${stats.difficulty} mode`}
-          value={`round ${stats.round}`}
-          valueStyle="text-[1.5rem] -mt-2"
-        />
-      </div>
-      <div className="flex gap-x-2 text-xs">
-        <StatDisplay
-          label="wins"
+          label="W"
           value={stats.wins}
-          valueStyle={`text-[1.75rem] ${stats.wins ? "text-blue-400" : ""}`}
+          valueStyle={stats.wins ? "text-blue-400" : ""}
         />
         <StatDisplay
-          label="losses"
+          label="L"
           value={stats.losses}
-          valueStyle={`text-[1.75rem] ${stats.losses ? "text-rose-400" : ""}`}
+          valueStyle={stats.losses ? "text-rose-400" : ""}
         />
-        <StatDisplay
-          label="draws"
-          value={stats.draws}
-          valueStyle="text-[1.75rem]"
-        />
+        <StatDisplay label="T" value={stats.draws} />
       </div>
     </div>
   );

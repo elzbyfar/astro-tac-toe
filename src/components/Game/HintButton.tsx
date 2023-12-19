@@ -28,12 +28,13 @@ export default function HintButton() {
 
   const className = {
     button:
-      "flex flex-col items-center justify-center px-4 py-2 rounded-full transition-all duration-300 ease-in-out",
+      "flex flex-col items-center mx-auto py-2 w-16 rounded-full transition-all duration-300 ease-in-out",
     buttonDisabled:
       "disabled:hover:shadow-none select-none disabled:opacity-30 disabled:bg-transparent",
     buttonHoverLg: "lg:hover:shadow-[0_0_5px_1px_#afafaf] lg:hover:bg-blue-200",
-    icon: "transition-all duration-300 ease-in-out",
-    text: "text-[10px]",
+    icon: "transition-all duration-300 ease-in-out w-5",
+    iconMd: "md:w-7",
+    text: "text-[10px] text-gray-500",
   };
 
   const styles = stylesReducer(className);
@@ -47,8 +48,6 @@ export default function HintButton() {
       <img
         src={undo.src} // same as undo icon, but styled differently
         alt="hint button"
-        width="28px"
-        height="28px"
         style={{ transform: "scaleX(-1)" }}
         className={styles("icon")}
       />

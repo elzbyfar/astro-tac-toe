@@ -8,6 +8,7 @@ import {
   setUndidPrevMove,
 } from "../../lib/globalState";
 import undo from "../../assets/undo.svg";
+import { stylesReducer } from "../../lib/utils";
 
 export default function UndoButton() {
   const moveStack = useStore(moveStackStore);
@@ -29,22 +30,28 @@ export default function UndoButton() {
     setUndidPrevMove(true);
   }
 
+  const className = {
+    button:
+      "flex flex-col items-center py-2 w-16 mx-auto rounded-full transition-all duration-300 ease-in-out select-none",
+    buttonDisabled:
+      "disabled:opacity-30 disabled:bg-transparent disabled:hover:shadow-none ",
+    buttonHoverLg: "lg:hover:shadow-[0_0_5px_1px_#afafaf] hover:bg-blue-200",
+    icon: "transition-all duration-300 ease-in-out w-5",
+    iconMd: "md:w-7",
+    text: "text-[10px] text-gray-500",
+  };
+
+  const styles = stylesReducer(className);
   return (
     <button
-      className="flex flex-col items-center justify-center disabled:opacity-30 disabled:bg-transparent hover:bg-blue-200 px-4 py-2 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_5px_1px_#afafaf] disabled:hover:shadow-none select-none"
+      className={styles("button")}
+      onClick={(e) => handleUndo(e)}
       disabled={
         moveStack.length === 0 || !activeRound || !isHumanTurn || undidPrevMove
       }
-      onClick={(e) => handleUndo(e)}
     >
-      <img
-        src={undo.src}
-        alt="undo button"
-        width="28px"
-        height="28px"
-        className="transition-all duration-300 ease-in-out"
-      />
-      <span style={{ fontFamily: "Jura" }} className="text-[10px]">
+      <img src={undo.src} alt="undo button" className={styles("icon")} />
+      <span style={{ fontFamily: "Jura" }} className={styles("text")}>
         UNDO
       </span>
     </button>

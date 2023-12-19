@@ -2,13 +2,14 @@ import { stylesReducer } from "../../lib/utils";
 
 export default function Title() {
   const className = {
-    container: "text-center cursor-default select-none",
+    container: "text-center cursor-default select-none pb-8",
     title: "tic-tac-toe text-2xl font-bold text-blue-400 flex gap-x-2",
     titleMd: "md:text-4xl md:gap-x-4",
     subtitle:
-      "flex -mt-[6px] items-end justify-end font-extralight text-blue-900/50 gap-x-1",
-    by: "text-[10px]",
-    byMd: "md:text-[12px]",
+      "flex -mt-[6px] mr-0 items-center justify-end font-extralight text-blue-900/50 gap-x-1",
+    subtitleMd: "md:mr-[2px]",
+    by: "mt-[1px] -mr-[2px] text-[6px]",
+    byMd: "md:mr-0 md:text-[12px]",
     name: "text-[14px]",
     nameMd: "md:text-[1rem]",
   };
