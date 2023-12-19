@@ -19,7 +19,7 @@ export default function Game() {
     card: "relative w-[90%] transition-all duration-300 bg-slate-50 z-10 py-6 flex flex-col rounded-md justify-evenly items-center opacity-100 shadow-[0_0_20px_3px_#afafaf]",
     cardMd: "md:max-w-screen-sm",
     bgBlur: `transition-all duration-700 ease-in absolute top-0 left-0 w-full h-full z-[1]`,
-    bgBlurVisibility: `${activeGame ? "backdrop-blur-xs bg-slate-50/70" : ""}`,
+    bgBlurVisibility: `${activeGame ? "backdrop-blur-xs bg-slate-50/60" : ""}`,
     inGameButtons: `grid grid-cols-3 w-full px-[54px] pb-2`,
     inGameButtonsMd: "md:px-32",
     inGameButtonsVisibility: `${activeGame ? "flex" : "hidden"}`,
@@ -32,7 +32,7 @@ export default function Game() {
       <div className={styles("bgBlur")}></div>
       <div className={styles("card")}>
         <Title />
-
+        <ExitButton />
         <SelectDifficulty />
         <Board />
         <div className={styles("inGameButtons")}>
@@ -41,7 +41,6 @@ export default function Game() {
           <HintButton />
         </div>
         <StartButton />
-        {/* <ExitButton /> */}
         <ActiveStats />
       </div>
     </>

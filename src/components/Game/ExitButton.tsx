@@ -10,6 +10,7 @@ import {
 } from "../../lib/globalState";
 import { INITIAL_RESULT, INITIAL_STATS } from "../../lib/constants";
 import { stylesReducer } from "../../lib/utils";
+import exit from "../../assets/exit.svg";
 
 export default function ExitButton() {
   const activeGame = useStore(activeGameStore);
@@ -29,17 +30,21 @@ export default function ExitButton() {
 
   const className = {
     button:
-      "text-[12px] text-rose-400 mt-4 py-0 px-4 rounded-xl transition-all duration-200 ease-in-out",
-    buttonMd: "md:py-2",
+      "group absolute flex flex-col items-center top-8 right-6 text-[12px] rounded-full transition-all duration-200 ease-in-out z-50",
+    buttonMd: "",
     buttonVisibility: `${activeGame ? "flex" : "hidden"}`,
-    buttonHoverLg: "lg:hover:bg-rose-400 lg:hover:text-white",
+    buttonHoverLg: " ",
+    icon: "w-6",
   };
 
   const styles = stylesReducer(className);
 
   return (
     <button className={styles("button")} onClick={handleExit}>
-      EXIT GAME
+      <img src={exit.src} alt="exit button" className={styles("icon")} />
+      <span className="opacity-0 select-none group-hover:opacity-100 -mt-4 group-hover:mt-1 text-[9px] text-gray-400 transition-all duration-200 ease-in-out">
+        END GAME
+      </span>
     </button>
   );
 }
