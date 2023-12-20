@@ -1,9 +1,11 @@
 import { useStore } from "@nanostores/react";
-import { findBestMove, findWinner, findTie } from "../../lib/utils.ts";
+import { findBestMove, findTie } from "../../lib/utils.ts";
+import { findWinner } from "../../utils";
 import type { Move, Result } from "../../lib/types";
 import {
   activeGameStore,
   activeRoundStore,
+  boardStore,
   moveStackStore,
   isHumanTurnStore,
   undidPrevMoveStore,
@@ -29,15 +31,16 @@ export default function Square({ index: squareIndex }: { index: number }) {
   const result = useStore(resultStore);
   const stats = useStore(statsStore);
   const hint = useStore(hintStore);
+  const board = useStore(boardStore);
 
   function gameIsOver(player: string, updatedStack: Move[]) {
-    const winner = findWinner(player, updatedStack);
+    const winner = findWinner(player, updatedStack, board.area);
     if (winner) {
-      const { indexes, direction } = winner || {};
+      // const { indexes, direction } = winner || {};
       handleUpdateStats({
         status: player === "X" ? "winner" : "loser",
-        winningSquares: indexes,
-        direction,
+        winningSquares: winner,
+        // direction,
       });
       return true;
     }
@@ -47,7 +50,7 @@ export default function Square({ index: squareIndex }: { index: number }) {
       handleUpdateStats({
         status: "draw",
         winningSquares: [],
-        direction: "",
+        // direction: "",
       });
       return true;
     }
@@ -67,7 +70,11 @@ export default function Square({ index: squareIndex }: { index: number }) {
 
     setTimeout(() => {
       // wait a second to generate AI's turn
-      const aiSelection = findBestMove(updatedStack, stats.difficulty);
+      const aiSelection = findBestMove(
+        updatedStack,
+        stats.difficulty,
+        board.area,
+      );
       const aiMove = { player: "O", index: aiSelection };
       setMoveStack([...updatedStack, aiMove]);
       setIsHumanTurn(true);
@@ -109,9 +116,16 @@ export default function Square({ index: squareIndex }: { index: number }) {
     return "rgb(251 113 133)";
   }
 
+  const areaToSquareSize: { [key: number]: string } = {
+    9: "h-[140px] w-[140px]",
+    25: "h-[84px] w-[84px]",
+    49: "h-[60px] w-[60px]",
+  };
+
   const className = {
-    square: `square relative justify-center text-[3rem] items-center h-20 w-20 transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
-    squareMd: "md:h-32 md:w-32 md:text-[5rem]",
+    square: `square relative justify-center text-[3rem] items-center transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
+    squareSize: areaToSquareSize[board.area],
+    // squareMd: "md:h-32 md:w-32 md:text-[5rem]",
     squareWithHint: `${hint === squareIndex ? "bg-blue-400/30" : ""}`,
   };
 

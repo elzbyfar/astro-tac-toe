@@ -1,6 +1,6 @@
 import { atom } from "nanostores";
-import { INITIAL_RESULT, INITIAL_STATS } from "./constants";
-import type { Result, Move, Stats } from "./types";
+import { BOARDS, INITIAL_RESULT, INITIAL_STATS } from "./constants";
+import type { Result, Move, Stats, Board } from "./types";
 
 export const activeGameStore = atom<boolean>(false);
 export const activeRoundStore = atom<boolean>(false);
@@ -10,7 +10,7 @@ export const undidPrevMoveStore = atom<boolean>(false);
 export const resultStore = atom<Result>(INITIAL_RESULT);
 export const statsStore = atom<Stats>(INITIAL_STATS);
 export const hintStore = atom<number | null>(null);
-export const sizeStore = atom<number>(3);
+export const boardStore = atom<Board>(BOARDS[0]);
 
 // Define actions to update the stores
 export const setActiveGame = (value: boolean) => activeGameStore.set(value);
@@ -22,4 +22,4 @@ export const setUndidPrevMove = (value: boolean) =>
 export const setResult = (result: Result) => resultStore.set(result);
 export const setStats = (stats: Stats) => statsStore.set(stats);
 export const setHint = (hint: number | null) => hintStore.set(hint);
-export const setSize = (size: number) => sizeStore.set(size);
+export const setBoard = (board: Board) => boardStore.set(board);

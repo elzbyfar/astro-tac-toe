@@ -5,20 +5,28 @@ import {
   isHumanTurnStore,
   moveStackStore,
   statsStore,
+  boardStore,
   setHint,
 } from "../../lib/globalState";
-import { findBestMove, stylesReducer } from "../../lib/utils";
+import { useStyles } from "../../hooks";
+import { findBestMove } from "../../utils";
 
 export default function HintButton() {
   const activeRound = useStore(activeRoundStore);
   const isHumanTurn = useStore(isHumanTurnStore);
   const moveStack = useStore(moveStackStore);
   const stats = useStore(statsStore);
+  const board = useStore(boardStore);
 
   function handleHint(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
     const forHuman = true;
-    const hintSelection = findBestMove(moveStack, stats.difficulty, forHuman);
+    const hintSelection = findBestMove(
+      moveStack,
+      stats.difficulty,
+      board.area,
+      forHuman,
+    );
 
     setHint(hintSelection);
     setTimeout(() => {
@@ -37,7 +45,7 @@ export default function HintButton() {
     text: "text-[10px] text-gray-500",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
 
   return (
     <button

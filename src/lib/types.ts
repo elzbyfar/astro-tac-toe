@@ -5,7 +5,7 @@ export type Move = {
 
 export type Result = {
   status: string;
-  direction: string;
+  // direction: string;
   winningSquares: number[];
 };
 
@@ -28,3 +28,9 @@ export type StatDisplayProps = {
 };
 
 export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+
+export type Board = {
+  area: number;
+  label: string;
+  matchToWin: number;
+};
