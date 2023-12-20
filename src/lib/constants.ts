@@ -24,8 +24,8 @@ export const INITIAL_STATS: Stats = {
 
 export const WINNING_SCENARIOS: { [key: number]: number[][] } = {
   9: getWinPaths(BOARDS[0]),
-  25: getWinPaths(BOARDS[1]),
-  49: getWinPaths(BOARDS[2]),
+  // 25: getWinPaths(BOARDS[1]),
+  // 49: getWinPaths(BOARDS[2]),
   // 9: [
   //   { indexes: [0, 1, 2], player: null },
   //   { indexes: [3, 4, 5], player: null },

@@ -1,6 +1,6 @@
 import { useStore } from "@nanostores/react";
 import { activeGameStore } from "../../lib/globalState";
-import { stylesReducer } from "../../lib/utils";
+import { useStyles } from "../../hooks";
 import type { ChangeEvent } from "react";
 import type { SettingsMenuOption } from "../../lib/types";
 
@@ -29,7 +29,7 @@ export default function Select({
     option: "select-option",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
 
   return (
     <div className={styles("container")}>

@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { stylesReducer } from "../../lib/utils";
+import { useStyles } from "../../hooks";
 import {
   activeRoundStore,
   moveStackStore,
@@ -42,7 +42,7 @@ export default function UndoButton() {
     text: "text-[10px] text-gray-500",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
   return (
     <button
       className={styles("button")}

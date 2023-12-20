@@ -1,9 +1,9 @@
 import { findWinner } from ".";
 import type { Move } from "../lib/types";
-import findEmptySpots from "./findEmptySpots";
+import getEmptySquares from "./getEmptySquares";
 
 function minimax(updatedStack: Move[], player: string, boardArea: number) {
-  const emptySpots = findEmptySpots(updatedStack);
+  const emptySpots = getEmptySquares(updatedStack, boardArea);
 
   if (findWinner("X", updatedStack, boardArea)) {
     return { index: -1, score: -10 };

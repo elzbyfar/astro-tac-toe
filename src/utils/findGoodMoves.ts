@@ -1,13 +1,13 @@
 import type { Move } from "../lib/types";
 import { WINNING_SCENARIOS } from "../lib/constants";
-import findEmptySpots from "./findEmptySpots";
+import getEmptySquares from "./getEmptySquares";
 
 function findGoodMoves(
   occupiedByPlayer: number[],
   updatedStack: Move[],
   boardArea: number,
 ) {
-  const emptySpots = findEmptySpots(updatedStack);
+  const emptySpots = getEmptySquares(updatedStack, boardArea);
 
   let mostGoodMoves = 0;
   const movesTowardWin = WINNING_SCENARIOS[boardArea].map((winningIndexes) => {

@@ -1,3 +1,9 @@
+export type Board = {
+  area: number;
+  label: string;
+  matchToWin: number;
+};
+
 export type Move = {
   player: string;
   index: number;
@@ -5,7 +11,6 @@ export type Move = {
 
 export type Result = {
   status: string;
-  // direction: string;
   winningSquares: number[];
 };
 
@@ -17,8 +22,9 @@ export type Stats = {
   draws: number;
 };
 
-export type StyleObject = {
-  [key: string]: string;
+export type SettingsMenuOption = {
+  label: string;
+  value: string;
 };
 
 export type StatDisplayProps = {
@@ -27,10 +33,8 @@ export type StatDisplayProps = {
   valueStyle?: string;
 };
 
-export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
-
-export type Board = {
-  area: number;
-  label: string;
-  matchToWin: number;
+export type StyleObject = {
+  [key: string]: string;
 };
+
+export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;

@@ -1,4 +1,4 @@
-import { stylesReducer } from "../../lib/utils";
+import { useStyles } from "../../hooks";
 
 export default function Title() {
   const className = {
@@ -14,7 +14,7 @@ export default function Title() {
     nameMd: "md:text-[1rem]",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
   return (
     <div className={styles("container")}>
       <h1 style={{ fontFamily: "bungee" }} className={styles("title")}>

@@ -1,5 +1,5 @@
 import type { Move } from "../lib/types";
-import findEmptySpots from "./findEmptySpots";
+import getEmptySquares from "./getEmptySquares";
 import minimax from "./minimax";
 import blockOrWin from "./blockOrWin";
 
@@ -9,7 +9,8 @@ function findBestMove(
   boardArea: number,
   forHuman?: boolean,
 ) {
-  const emptySpots = findEmptySpots(updatedStack);
+  const emptySpots = getEmptySquares(updatedStack, boardArea);
+  console.log("how about this component?");
 
   let choice = -1;
   if (emptySpots.length) {
