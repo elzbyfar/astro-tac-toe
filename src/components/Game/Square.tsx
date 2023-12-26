@@ -56,7 +56,6 @@ export default function Square({ index: squareIndex }: { index: number }) {
   };
 
   const handlePlay = (index: number) => {
-    console.log("MAKES IT", activeGame, activeRound);
     if (activeGame === false || activeRound === false) return;
     if (undidPrevMove) {
       setUndidPrevMove(false);

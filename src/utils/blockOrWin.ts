@@ -3,18 +3,18 @@ import findGoodMoves from "./findGoodMoves";
 
 function blockOrWin(updatedStack: Move[], boardArea: number) {
   const aiSquares = [] as number[];
-  const humanSquares = [] as number[];
+  const huSquares = [] as number[];
 
   updatedStack.forEach((move) => {
     if (move.player === "O") {
       aiSquares.push(move.index);
     } else {
-      humanSquares.push(move.index);
+      huSquares.push(move.index);
     }
   });
 
   const { mustPlay: aiMustPlay, canPlay: aiCanPlay } = findGoodMoves(
-    humanSquares,
+    huSquares,
     updatedStack,
     boardArea,
   );

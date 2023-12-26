@@ -10,7 +10,6 @@ function findBestMove(
   forHuman?: boolean,
 ) {
   const emptySpots = getEmptySquares(updatedStack, boardArea);
-  console.log("how about this component?");
 
   let choice = -1;
   if (emptySpots.length) {
