@@ -5,6 +5,7 @@ import {
   activeGameStore,
   setActiveGame,
   setActiveRound,
+  setIsHumanTurn,
 } from "../../lib/globalState.ts";
 
 export default function StartButton() {
@@ -14,6 +15,7 @@ export default function StartButton() {
     event.preventDefault();
     setActiveGame(true);
     setActiveRound(true);
+    setIsHumanTurn(true);
   }
 
   const className = {
