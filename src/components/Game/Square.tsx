@@ -66,12 +66,12 @@ export default function Square({ index: squareIndex }: { index: number }) {
     setMoveStack(updatedStack);
     if (gameIsOver("X", updatedStack)) return;
 
-    setTimeout(() => {
+    setTimeout(async () => {
       // wait a second to generate AI's turn
-      const aiSelection = findBestMove(
+      const aiSelection = await findBestMove(
         updatedStack,
         stats.difficulty,
-        board.area,
+        board,
       );
       const aiMove = { player: "O", index: aiSelection };
       setMoveStack([...updatedStack, aiMove]);
@@ -115,9 +115,9 @@ export default function Square({ index: squareIndex }: { index: number }) {
   };
 
   const areaToSquareSize: { [key: number]: string } = {
-    9: "h-[140px] w-[140px]",
-    25: "h-[84px] w-[84px]",
-    49: "h-[60px] w-[60px]",
+    9: "md:h-[140px] md:w-[140px] h-[80px] w-[80px]",
+    25: "md:h-[84px] md:w-[84px] h-[48px] w-[48px]",
+    49: "md:h-[60px] md:w-[60px] h-[34.28px] w-[34.28px]",
   };
 
   const isDisabled =
@@ -128,7 +128,6 @@ export default function Square({ index: squareIndex }: { index: number }) {
   const className = {
     square: `square relative justify-center text-[3rem] items-center transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
     squareSize: areaToSquareSize[board.area],
-    // squareMd: "md:h-32 md:w-32 md:text-[5rem]",
     squareWithHint: `${hint === squareIndex ? "bg-blue-400/30" : ""}`,
   };
 

@@ -24,8 +24,8 @@ export default function Select({
     containerVisibility: `${activeGame ? "hidden" : "flex"}`,
     wrapper: "flex h-[56px] justify-evenly items-center",
     label:
-      "select-label select-none text-sm text-gray-500 cursor-default leading-10",
-    select: "py-3 ml-2 px-1 uppercase",
+      "select-label select-none text-sm text-gray-500 cursor-default leading-10 font-bold",
+    select: "py-3 ml-2 px-1 uppercase font-normal",
     option: "select-option",
   };
 

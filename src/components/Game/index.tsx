@@ -26,13 +26,15 @@ export default function Game() {
   const board = useStore(boardStore);
 
   const className = {
-    card: "relative w-[90%] -translate-y-16 transition-all duration-300 bg-slate-50 z-10 py-6 flex flex-col rounded-md justify-evenly items-center opacity-100 shadow-[0_0_20px_3px_#afafaf]",
+    card: "relative w-[90%] -translate-y-16 transition-all duration-300 bg-slate-50 z-10 py-6 flex flex-col rounded-md justify-evenly items-center opacity-100",
+    cardGlow: `${activeGame ? "" : "shadow-[0_0_35px_1px_#afafaf]"}`,
     cardMd: "md:max-w-screen-sm",
     bgBlur: `transition-all duration-700 ease-in absolute top-0 left-0 w-full h-full z-[1]`,
-    bgBlurVisibility: `${activeGame ? "backdrop-blur-xs bg-slate-50/60" : ""}`,
+    bgBlurVisibility: `${activeGame ? "backdrop-blur-sm bg-slate-700/60" : ""}`,
     inGameButtons: `grid grid-cols-3 w-full px-[54px] pb-2`,
     inGameButtonsMd: "md:px-32",
     inGameButtonsVisibility: `${activeGame ? "flex" : "hidden"}`,
+    selectWrapper: "flex flex-col items-center justify-center py-4",
   };
 
   const styles = useStyles(className);
@@ -56,24 +58,26 @@ export default function Game() {
       <div className={styles("card")}>
         <Title />
         <ExitButton />
-        <Select
-          label="GAME MODE"
-          value={GAME_DIFFICULTIES.indexOf(stats.difficulty)}
-          handleChange={handleDifficultyChange}
-          menuOptions={GAME_DIFFICULTIES.map((difficulty, idx) => ({
-            value: idx,
-            label: difficulty,
-          }))}
-        />
-        <Select
-          label="CHOOSE BOARD"
-          value={board.area}
-          handleChange={handleBoardChange}
-          menuOptions={BOARDS.map((board) => ({
-            value: board.area,
-            label: board.label,
-          }))}
-        />
+        <div className={styles("selectWrapper")}>
+          <Select
+            label="GAME MODE"
+            value={GAME_DIFFICULTIES.indexOf(stats.difficulty)}
+            handleChange={handleDifficultyChange}
+            menuOptions={GAME_DIFFICULTIES.map((difficulty, idx) => ({
+              value: idx,
+              label: difficulty,
+            }))}
+          />
+          <Select
+            label="BOARD"
+            value={board.area}
+            handleChange={handleBoardChange}
+            menuOptions={BOARDS.map((board) => ({
+              value: board.area,
+              label: board.label,
+            }))}
+          />
+        </div>
         <Board />
         <div className={styles("inGameButtons")}>
           <UndoButton />

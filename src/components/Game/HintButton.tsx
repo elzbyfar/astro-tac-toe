@@ -18,13 +18,15 @@ export default function HintButton() {
   const stats = useStore(statsStore);
   const board = useStore(boardStore);
 
-  function handleHint(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  async function handleHint(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
     event.preventDefault();
     const forHuman = true;
-    const hintSelection = findBestMove(
+    const hintSelection = await findBestMove(
       moveStack,
       stats.difficulty,
-      board.area,
+      board,
       forHuman,
     );
 

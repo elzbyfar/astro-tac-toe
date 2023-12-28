@@ -16,7 +16,6 @@ export default function StartButton() {
     setActiveGame(true);
     setActiveRound(true);
     setIsHumanTurn(true);
-    console.log("STARTING GAME");
   };
 
   const className = {

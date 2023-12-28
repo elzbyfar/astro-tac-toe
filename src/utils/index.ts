@@ -1,15 +1,13 @@
-import blockOrWin from "./blockOrWin";
 import findBestMove from "./findBestMove";
-import findGoodMoves from "./findGoodMoves";
+import findGoodMove from "./findGoodMove";
 import findWinner from "./findWinner";
 import getEmptySquares from "./getEmptySquares";
 import getWinPaths from "./getWinPaths";
 import minimax from "./minimax";
 
 export {
-  blockOrWin,
   findBestMove,
-  findGoodMoves,
+  findGoodMove,
   findWinner,
   getEmptySquares,
   getWinPaths,
