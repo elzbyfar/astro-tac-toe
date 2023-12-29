@@ -2,7 +2,7 @@ import type { Board, Move } from "../lib/types";
 import { WINNING_SCENARIOS } from "../lib/constants";
 import getEmptySquares from "./getEmptySquares";
 
-function findGoodMoves(updatedStack: Move[], board: Board) {
+function findGoodMove(updatedStack: Move[], board: Board) {
   const occupiedByAi: number[] = [];
   const occupiedByHu: number[] = [];
   const freeSquares: number[] = getEmptySquares(updatedStack, board.area);
@@ -18,10 +18,11 @@ function findGoodMoves(updatedStack: Move[], board: Board) {
   let decision: number = -1;
 
   type MovesMap = {
-    [key: number]: { x: number[][]; o: number[][] };
+    [key: number]: number[][];
   };
 
   const movesMapByTarget: MovesMap = {};
+  const bestCases: { [key: number]: number[][] } = {};
 
   WINNING_SCENARIOS[board.area].forEach((scenario) => {
     let movesTowardAiWin = 0;
@@ -36,29 +37,37 @@ function findGoodMoves(updatedStack: Move[], board: Board) {
       }
     });
 
+    if (
+      (movesTowardAiWin && !movesTowardHuWin) ||
+      (!movesTowardAiWin && movesTowardHuWin)
+    ) {
+      const curr = movesTowardAiWin || movesTowardHuWin;
+      bestCases[curr] = [...(bestCases[curr] || []), scenario];
+    }
+
     // if neither player has a move in the scenario, skip it
     if (!movesTowardAiWin && !movesTowardHuWin) return;
 
     if (!movesMapByTarget[movesTowardAiWin]) {
-      movesMapByTarget[movesTowardAiWin] = { x: [], o: [] };
+      movesMapByTarget[movesTowardAiWin] = [];
     }
     if (!movesMapByTarget[movesTowardHuWin]) {
-      movesMapByTarget[movesTowardHuWin] = { x: [], o: [] };
+      movesMapByTarget[movesTowardHuWin] = [];
     }
-    movesMapByTarget[movesTowardAiWin].o.push(scenario);
-    movesMapByTarget[movesTowardHuWin].x.push(scenario);
+    movesMapByTarget[movesTowardAiWin].push(scenario);
+    movesMapByTarget[movesTowardHuWin].push(scenario);
   });
 
-  let targetMoves = board.matchToWin - 1;
+  let targetMoves = board.connectToWin - 1;
 
   while (targetMoves > 0) {
-    if (movesMapByTarget[targetMoves]) {
-      const { o: aiWinScenarios, x: huWinScenarios } =
-        movesMapByTarget[targetMoves];
-      decision = hasAvailability(aiWinScenarios, freeSquares);
+    if (bestCases[targetMoves]) {
+      decision = hasAvailability(bestCases[targetMoves], freeSquares);
       if (decision > -1) break;
-
-      decision = hasAvailability(huWinScenarios, freeSquares);
+    }
+    if (movesMapByTarget[targetMoves]) {
+      const winScenarios = movesMapByTarget[targetMoves];
+      decision = hasAvailability(winScenarios, freeSquares);
       if (decision > -1) break;
     }
 
@@ -83,4 +92,4 @@ function hasAvailability(scenarios: number[][], freeSquares: number[]) {
   return decision;
 }
 
-export default findGoodMoves;
+export default findGoodMove;

@@ -13,7 +13,8 @@ async function findBestMove(
 
   let choice = -1;
   if (emptySpots.length) {
-    if (forHuman || difficulty === "unbeatable") {
+    if (forHuman || difficulty === "AI") {
+      console.log("AI is thinking...");
       const result = await new Promise<ScoredMove>(
         (resolve: (value: ScoredMove) => void) => {
           setTimeout(() => {
@@ -24,7 +25,7 @@ async function findBestMove(
       ).then((scoredMove) => scoredMove);
 
       choice = result.index;
-    } else if (difficulty === "easy") {
+    } else if (difficulty === "DUMB") {
       const random = Math.floor(Math.random() * emptySpots.length);
       choice = emptySpots[random];
     } else {

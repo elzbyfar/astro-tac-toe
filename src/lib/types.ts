@@ -1,8 +1,7 @@
 export type Board = {
   area: number;
   label: string;
-  matchToWin: number;
-  possibleDiags: number;
+  connectToWin: number;
 };
 
 export type Move = {
@@ -26,6 +25,7 @@ export type Stats = {
 export type SettingsMenuOption = {
   label: string;
   value: number;
+  disabled: boolean;
 };
 
 export type StatDisplayProps = {
@@ -41,6 +41,10 @@ export type StyleObject = {
 export type ScoredMove = {
   index: number;
   score: number;
+};
+
+export type HumanPaths = {
+  [key: number]: number[][];
 };
 
 export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;

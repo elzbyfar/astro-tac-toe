@@ -1,6 +1,7 @@
 import { useStore } from "@nanostores/react";
 import { findBestMove, getEmptySquares } from "../../utils";
 import { findWinner } from "../../utils";
+import { useStyles } from "../../hooks";
 import type { Move, Result } from "../../lib/types";
 import {
   activeGameStore,
@@ -20,7 +21,6 @@ import {
   setIsHumanTurn,
 } from "../../lib/globalState.ts";
 import "../../styles/square.css";
-import { useStyles } from "../../hooks";
 
 export default function Square({ index: squareIndex }: { index: number }) {
   const activeGame = useStore(activeGameStore);

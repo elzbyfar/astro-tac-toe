@@ -49,6 +49,12 @@ export default function Game() {
 
   function handleBoardChange(event: ChangeEvent<HTMLSelectElement>) {
     const value = Number(event.target.value);
+    if (value > 9 && stats.difficulty === "AI") {
+      setStats({
+        ...stats,
+        difficulty: "SMART",
+      });
+    }
     setBoard(BOARDS.find((board) => board.area === value) || BOARDS[0]);
   }
 
@@ -60,12 +66,13 @@ export default function Game() {
         <ExitButton />
         <div className={styles("selectWrapper")}>
           <Select
-            label="GAME MODE"
+            label="MODE"
             value={GAME_DIFFICULTIES.indexOf(stats.difficulty)}
             handleChange={handleDifficultyChange}
             menuOptions={GAME_DIFFICULTIES.map((difficulty, idx) => ({
               value: idx,
               label: difficulty,
+              disabled: board.area > 9 && difficulty === "AI",
             }))}
           />
           <Select
@@ -75,6 +82,7 @@ export default function Game() {
             menuOptions={BOARDS.map((board) => ({
               value: board.area,
               label: board.label,
+              disabled: false,
             }))}
           />
         </div>

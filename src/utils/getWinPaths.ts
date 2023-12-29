@@ -14,10 +14,12 @@ function getWinPaths(board: Board) {
 
   const seen: { [key: string]: {} } = {}; // trie to avoid duplicates
 
-  const side = Math.sqrt(board.area);
-  const match = board.matchToWin;
+  const { area, connectToWin } = board;
 
-  const winningScenarios = [];
+  const side = Math.sqrt(area);
+
+  const winPaths = [];
+  const pathsByIndex: { [key: number]: number[][] } = {};
 
   const isInBounds = (newRow: number, newCol: number) => {
     return newRow < side && newRow >= 0 && newCol < side && newCol >= 0;
@@ -34,13 +36,13 @@ function getWinPaths(board: Board) {
         let combo = [makeIndex(row, col)];
         let newRow = row + x;
         let newCol = col + y;
-        while (isInBounds(newRow, newCol) && combo.length < match) {
+        while (isInBounds(newRow, newCol) && combo.length < connectToWin) {
           combo.push(makeIndex(newRow, newCol));
           newRow += x;
           newCol += y;
         }
 
-        if (combo.length === match) {
+        if (combo.length === connectToWin) {
           combo = combo.sort((a, b) => (a > b ? 1 : -1));
           let node = seen;
           let notYetSeen = false;
@@ -54,7 +56,10 @@ function getWinPaths(board: Board) {
             node = node[value];
           }
           if (notYetSeen) {
-            winningScenarios.push(combo);
+            winPaths.push(combo);
+            for (const item of combo) {
+              pathsByIndex[item] = [...(pathsByIndex[item] || []), combo];
+            }
           }
         }
       }
@@ -63,7 +68,8 @@ function getWinPaths(board: Board) {
     col = 0;
     row++;
   }
-  return winningScenarios;
+
+  return { winPaths, pathsByIndex };
 }
 
 export default getWinPaths;

@@ -41,7 +41,7 @@ export default function HintButton() {
       "flex flex-col items-center mx-auto py-2 w-16 rounded-full transition-all duration-300 ease-in-out",
     buttonDisabled:
       "disabled:hover:shadow-none select-none disabled:opacity-30 disabled:bg-transparent",
-    buttonHoverLg: "lg:hover:shadow-[0_0_5px_1px_#afafaf] lg:hover:bg-blue-200",
+    // buttonHoverLg: "lg:hover:shadow-[0_0_5px_1px_#afafaf] lg:hover:bg-blue-200",
     icon: "transition-all duration-300 ease-in-out w-5",
     iconMd: "md:w-7",
     text: "text-[10px] text-gray-500",

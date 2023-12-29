@@ -47,6 +47,7 @@ export default function Select({
                 key={option.value}
                 value={option.value}
                 className={styles("option")}
+                disabled={option.disabled}
               >
                 {option.label}
               </option>
