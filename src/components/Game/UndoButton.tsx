@@ -32,29 +32,56 @@ export default function UndoButton() {
   }
 
   const className = {
+    wrapper: "group relative pt-4 pb-8 flex justify-center select-none",
     button:
-      "flex flex-col items-center py-2 w-16 mx-auto rounded-full transition-all duration-300 ease-in-out select-none",
-    buttonDisabled:
-      "disabled:opacity-30 disabled:bg-transparent disabled:hover:shadow-none ",
-    buttonHoverLg: "lg:hover:shadow-[0_0_5px_1px_#afafaf] hover:bg-blue-200",
+      "flex flex-col items-center justify-center mx-auto w-16 rounded-full transition-all duration-300 ease-in-out",
+    buttonDisabled: "disabled:opacity-30 disabled:bg-transparent",
     icon: "transition-all duration-300 ease-in-out w-5",
     iconMd: "md:w-7",
     text: "text-[10px] text-gray-500",
+    singleUndoWarning:
+      "absolute w-40 opacity-0 mt-4 text-[10px] bg-[#fb7171] text-white text-center transition-all duration-100 ease-in-out rounded-sm",
+    singleUndoWarningVisibility: `${
+      moveStack.length === 0 || !undidPrevMove ? "hidden" : ""
+    }`,
+    singleUndoWarningHoverLg: "lg:group-hover:opacity-100 lg:group-hover:mt-12",
+    tooltip:
+      "absolute w-40 opacity-0 mt-4 text-[10px] bg-blue-300 text-black text-center transition-all duration-100 ease-in-out rounded-sm",
+    tooltipVisibility: `${
+      moveStack.length === 0 || !activeRound || !isHumanTurn || undidPrevMove
+        ? "hidden"
+        : ""
+    }`,
+    tooltipHoverLg: "lg:group-hover:opacity-100 lg:group-hover:mt-12",
   };
 
   const styles = useStyles(className);
   return (
-    <button
-      className={styles("button")}
-      onClick={(e) => handleUndo(e)}
-      disabled={
-        moveStack.length === 0 || !activeRound || !isHumanTurn || undidPrevMove
-      }
-    >
-      <img src={undo.src} alt="undo button" className={styles("icon")} />
-      <span style={{ fontFamily: "Jura" }} className={styles("text")}>
-        UNDO
+    <div className={styles("wrapper")}>
+      <button
+        className={styles("button")}
+        onClick={(e) => handleUndo(e)}
+        disabled={
+          moveStack.length === 0 ||
+          !activeRound ||
+          !isHumanTurn ||
+          undidPrevMove
+        }
+      >
+        <img src={undo.src} alt="undo button" className={styles("icon")} />
+        <span style={{ fontFamily: "Jura" }} className={styles("text")}>
+          UNDO
+        </span>
+      </button>
+      <span
+        style={{ fontFamily: "Jura" }}
+        className={styles("singleUndoWarning")}
+      >
+        CAN ONLY UNDO ONE MOVE
       </span>
-    </button>
+      <span style={{ fontFamily: "Jura" }} className={styles("tooltip")}>
+        CLICK TO REVERT LAST MOVE
+      </span>
+    </div>
   );
 }

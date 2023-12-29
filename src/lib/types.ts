@@ -31,6 +31,7 @@ export type SettingsMenuOption = {
 export type StatDisplayProps = {
   label: string;
   value: number | string;
+  labelStyle?: string;
   valueStyle?: string;
 };
 

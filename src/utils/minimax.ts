@@ -81,8 +81,6 @@ function minimax(
   }
 
   memo[stateKey] = bestMove;
-
-  console.log(memo);
   return bestMove;
 }
 

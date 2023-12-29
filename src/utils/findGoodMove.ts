@@ -22,7 +22,7 @@ function findGoodMove(updatedStack: Move[], board: Board) {
   };
 
   const movesMapByTarget: MovesMap = {};
-  const bestCases: { [key: number]: number[][] } = {};
+  const bestCases: { [key: number]: { x: number[][]; o: number[][] } } = {};
 
   WINNING_SCENARIOS[board.area].forEach((scenario) => {
     let movesTowardAiWin = 0;
@@ -37,12 +37,17 @@ function findGoodMove(updatedStack: Move[], board: Board) {
       }
     });
 
-    if (
-      (movesTowardAiWin && !movesTowardHuWin) ||
-      (!movesTowardAiWin && movesTowardHuWin)
-    ) {
-      const curr = movesTowardAiWin || movesTowardHuWin;
-      bestCases[curr] = [...(bestCases[curr] || []), scenario];
+    // set the best currently available moves for each player
+    if (movesTowardAiWin && !movesTowardHuWin) {
+      bestCases[movesTowardAiWin] = {
+        x: [...(bestCases[movesTowardAiWin]?.x || [])],
+        o: [...(bestCases[movesTowardAiWin]?.o || []), scenario],
+      };
+    } else if (!movesTowardAiWin && movesTowardHuWin) {
+      bestCases[movesTowardHuWin] = {
+        o: [...(bestCases[movesTowardHuWin]?.o || [])],
+        x: [...(bestCases[movesTowardHuWin]?.x || []), scenario],
+      };
     }
 
     // if neither player has a move in the scenario, skip it
@@ -61,8 +66,12 @@ function findGoodMove(updatedStack: Move[], board: Board) {
   let targetMoves = board.connectToWin - 1;
 
   while (targetMoves > 0) {
-    if (bestCases[targetMoves]) {
-      decision = hasAvailability(bestCases[targetMoves], freeSquares);
+    if (bestCases[targetMoves]?.o.length) {
+      decision = hasAvailability(bestCases[targetMoves].o, freeSquares);
+      if (decision > -1) break;
+    }
+    if (bestCases[targetMoves]?.x.length) {
+      decision = hasAvailability(bestCases[targetMoves].x, freeSquares);
       if (decision > -1) break;
     }
     if (movesMapByTarget[targetMoves]) {

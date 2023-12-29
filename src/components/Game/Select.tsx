@@ -21,7 +21,7 @@ export default function Select({
 
   const className = {
     container: "w-full justify-center",
-    containerVisibility: `${activeGame ? "hidden" : "flex"}`,
+    containerVisibility: `${activeGame ? "hidden" : "block"}`,
     wrapper: "flex h-[56px] justify-evenly items-center",
     label:
       "select-label select-none text-sm text-gray-500 cursor-default leading-10 font-bold",

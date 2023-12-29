@@ -14,7 +14,6 @@ async function findBestMove(
   let choice = -1;
   if (emptySpots.length) {
     if (forHuman || difficulty === "AI") {
-      console.log("AI is thinking...");
       const result = await new Promise<ScoredMove>(
         (resolve: (value: ScoredMove) => void) => {
           setTimeout(() => {
