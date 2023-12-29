@@ -34,7 +34,7 @@ export default function Game() {
     inGameButtons: `grid grid-cols-3 w-full px-[54px] pb-2`,
     inGameButtonsMd: "md:px-32",
     inGameButtonsVisibility: `${activeGame ? "flex" : "hidden"}`,
-    selectWrapper: "flex flex-col items-center justify-center py-4",
+    selectWrapper: "flex flex-col items-center justify-center",
   };
 
   const styles = useStyles(className);

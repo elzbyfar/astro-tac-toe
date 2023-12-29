@@ -115,9 +115,9 @@ export default function Square({ index: squareIndex }: { index: number }) {
   };
 
   const areaToSquareSize: { [key: number]: string } = {
-    9: "md:h-[140px] md:w-[140px] h-[80px] w-[80px]",
-    25: "md:h-[84px] md:w-[84px] h-[48px] w-[48px]",
-    49: "md:h-[60px] md:w-[60px] h-[34.28px] w-[34.28px]",
+    9: "md:h-[140px] md:w-[140px] h-[80px] w-[80px] md:text-[5rem] text-[2.85rem]",
+    25: "md:h-[84px] md:w-[84px] h-[48px] w-[48px] md:text-[3.5rem] text-[2rem]",
+    49: "md:h-[60px] md:w-[60px] h-[34.28px] w-[34.28px] md:text-[2.5rem] text-[1.5rem]",
   };
 
   const isDisabled =
@@ -126,7 +126,7 @@ export default function Square({ index: squareIndex }: { index: number }) {
     Boolean(moveStack.find((move: Move) => move.index === squareIndex));
 
   const className = {
-    square: `square relative justify-center text-[3rem] items-center transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
+    square: `square relative justify-center items-center transition ease-in-out duration-300 disabled:bg-transparent hover:bg-[#00000010]`,
     squareSize: areaToSquareSize[board.area],
     squareWithHint: `${hint === squareIndex ? "bg-blue-400/30" : ""}`,
   };

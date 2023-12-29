@@ -2,7 +2,7 @@ import { useStyles } from "../../hooks";
 
 export default function Title() {
   const className = {
-    container: "text-center cursor-default select-none",
+    container: "text-center cursor-default select-none pb-2",
     title: "tic-tac-toe text-2xl font-bold text-blue-400 flex gap-x-2",
     titleMd: "md:text-4xl md:gap-x-4",
     subtitle:
