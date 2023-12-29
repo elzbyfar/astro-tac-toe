@@ -2,7 +2,7 @@ import { findWinner } from ".";
 import type { Board, Move, ScoredMove } from "../lib/types";
 import getEmptySquares from "./getEmptySquares";
 
-const MAX_DEPTH = 3;
+const MAX_DEPTH = 10;
 const memo = {} as { [key: string]: ScoredMove };
 
 function minimax(
@@ -27,7 +27,7 @@ function minimax(
     return { index: -1, score: -1 };
   } else if (findWinner("O", updatedStack, board.area)) {
     return { index: -1, score: 1 };
-  } else if (emptySpots.length === 0 || depth === MAX_DEPTH) {
+  } else if (emptySpots.length === 0 || depth >= MAX_DEPTH) {
     return { index: -1, score: 0 };
   }
 
