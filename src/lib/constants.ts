@@ -1,10 +1,16 @@
-import type { Move, Result, Stats } from "./types";
+import type { Result, Board, Stats } from "./types";
+import { getWinPaths } from "../utils";
 
-export const GAME_DIFFICULTIES: string[] = ["easy", "hard", "unbeatable"];
+export const GAME_DIFFICULTIES: string[] = ["DUMB", "SMART", "AI"];
+
+export const BOARDS: Board[] = [
+  { area: 9, label: "3 x 3", connectToWin: 3 },
+  { area: 25, label: "5 x 5", connectToWin: 4 },
+  { area: 49, label: "7 x 7", connectToWin: 5 },
+];
 
 export const INITIAL_RESULT: Result = {
   status: "",
-  direction: "",
   winningSquares: [],
 };
 
@@ -16,25 +22,25 @@ export const INITIAL_STATS: Stats = {
   draws: 0,
 };
 
-export const WINNING_SCENARIOS = [
+const ALL_PATHS: {
+  [key: number]: {
+    winPaths: number[][];
+    pathsByIndex: { [key: number]: number[][] };
+  };
+} = {
+  9: getWinPaths(BOARDS[0]),
+  25: getWinPaths(BOARDS[1]),
+  49: getWinPaths(BOARDS[2]),
+};
+export const WINNING_SCENARIOS: { [key: number]: number[][] } = {
+  9: ALL_PATHS[9].winPaths,
+  25: ALL_PATHS[25].winPaths,
+  49: ALL_PATHS[49].winPaths,
+};
+
+export const PATHS_BY_INDEX: { [key: number]: { [key: number]: number[][] } } =
   {
-    indexes: [0, 1, 2],
-    direction: " rounded-xl h-32 w-96 bg-green-200 z-0 opacity-50",
-    player: null,
-  },
-  {
-    indexes: [3, 4, 5],
-    direction: " rounded-xl h-32 w-96 bg-green-200 z-0 opacity-50",
-    player: null,
-  },
-  {
-    indexes: [6, 7, 8],
-    direction: " rounded-xl h-32 w-96 bg-green-200 z-0 opacity-50",
-    player: null,
-  },
-  { indexes: [0, 3, 6], direction: "vertical", player: null },
-  { indexes: [1, 4, 7], direction: "vertical", player: null },
-  { indexes: [2, 5, 8], direction: "vertical", player: null },
-  { indexes: [0, 4, 8], direction: "diagonal1", player: null },
-  { indexes: [2, 4, 6], direction: "diagonal2", player: null },
-];
+    9: ALL_PATHS[9].pathsByIndex,
+    25: ALL_PATHS[25].pathsByIndex,
+    49: ALL_PATHS[49].pathsByIndex,
+  };

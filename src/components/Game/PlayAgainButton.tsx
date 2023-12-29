@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { stylesReducer } from "../../lib/utils.ts";
+import { useStyles } from "../../hooks";
 import { INITIAL_RESULT } from "../../lib/constants.ts";
 import {
   resultStore,
@@ -45,7 +45,7 @@ export default function PlayAgainButton() {
       "lg:hover:bg-blue-500 lg:hover:text-white lg:hover:shadow-[0_0_8px_1px_#8f8f8f]",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
 
   return (
     <div className={styles("wrapper")}>

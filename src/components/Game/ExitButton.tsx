@@ -10,7 +10,7 @@ import {
   activeRoundStore,
 } from "../../lib/globalState";
 import { INITIAL_RESULT, INITIAL_STATS } from "../../lib/constants";
-import { stylesReducer } from "../../lib/utils";
+import { useStyles } from "../../hooks";
 import exit from "../../assets/exit.svg";
 
 export default function ExitButton() {
@@ -42,7 +42,7 @@ export default function ExitButton() {
     textHoverLg: "lg:group-hover:opacity-100 lg:group-hover:mt-1",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
 
   return (
     <button className={styles("button")} onClick={handleExit}>

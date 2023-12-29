@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { stylesReducer } from "../../lib/utils.ts";
+import { useStyles } from "../../hooks";
 import type { ReactMouseEvent } from "../../lib/types.ts";
 import {
   activeGameStore,
@@ -11,12 +11,12 @@ import {
 export default function StartButton() {
   const activeGame = useStore(activeGameStore);
 
-  function handleStart(event: ReactMouseEvent) {
+  const handleStart = (event: ReactMouseEvent) => {
     event.preventDefault();
     setActiveGame(true);
     setActiveRound(true);
     setIsHumanTurn(true);
-  }
+  };
 
   const className = {
     wrapper: "group box-border justify-center select-none",
@@ -31,7 +31,7 @@ export default function StartButton() {
     underlineHoverLg: "lg:group-hover:w-full",
   };
 
-  const styles = stylesReducer(className);
+  const styles = useStyles(className);
 
   return (
     <div className={styles("wrapper")}>
