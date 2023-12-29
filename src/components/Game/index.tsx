@@ -30,7 +30,7 @@ export default function Game() {
     cardGlow: `${activeGame ? "" : "shadow-[0_0_35px_1px_#afafaf]"}`,
     cardMd: "md:max-w-screen-sm",
     bgBlur: `transition-all duration-700 ease-in absolute top-0 left-0 w-full h-full z-[1]`,
-    bgBlurVisibility: `${activeGame ? "bg-slate-700/80" : ""}`,
+    bgBlurVisibility: `${activeGame ? "bg-slate-700/70" : ""}`,
     inGameButtons: `grid grid-cols-3 w-full px-[54px] pb-2`,
     inGameButtonsMd: "md:px-32",
     inGameButtonsVisibility: `${activeGame ? "flex" : "hidden"}`,
@@ -82,7 +82,6 @@ export default function Game() {
             menuOptions={BOARDS.map((board) => ({
               value: board.area,
               label: board.label,
-              disabled: false,
             }))}
           />
         </div>

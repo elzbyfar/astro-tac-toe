@@ -25,7 +25,7 @@ export type Stats = {
 export type SettingsMenuOption = {
   label: string;
   value: number;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 export type StatDisplayProps = {
