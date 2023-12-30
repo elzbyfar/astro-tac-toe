@@ -13,7 +13,7 @@ export default function Board() {
     container: `duration-300 transition-all overflow-hidden box-border w-60 flex flex-wrap`,
     containerMd: `md:w-[420px]`,
     containerVisibility: `${
-      activeGame ? "h-60 mt-3 mb-8 md:h-[420px]" : "h-0"
+      activeGame ? "h-60 mt-2 mb-8 md:h-[420px]" : "h-0"
     }`,
   };
   const styles = useStyles(className);
