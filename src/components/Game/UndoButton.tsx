@@ -10,6 +10,7 @@ import {
 } from "../../lib/globalState";
 import type { ReactMouseEvent } from "../../lib/types";
 import undo from "../../assets/undo.svg";
+import Tooltip from "./Tooltip";
 
 export default function UndoButton() {
   const moveStack = useStore(moveStackStore);
@@ -32,9 +33,10 @@ export default function UndoButton() {
   }
 
   const className = {
-    wrapper: "group relative pt-4 pb-8 flex justify-center select-none",
+    wrapper:
+      "group relative pt-4 pb-8 flex flex-col items-center justify-center select-none",
     button:
-      "flex flex-col items-center justify-center mx-auto w-16 rounded-full transition-all duration-300 ease-in-out",
+      "group flex flex-col items-center justify-center mx-auto w-16 rounded-full",
     buttonDisabled: "disabled:opacity-30 disabled:bg-transparent",
     icon: "transition-all duration-300 ease-in-out w-5",
     iconMd: "md:w-7",
@@ -46,13 +48,14 @@ export default function UndoButton() {
     }`,
     singleUndoWarningHoverLg: "lg:group-hover:opacity-100 lg:group-hover:mt-12",
     tooltip:
-      "absolute w-40 opacity-0 mt-4 text-[10px] bg-blue-300 text-black text-center transition-all duration-100 ease-in-out rounded-sm",
+      "absolute overflow-hidden w-0 h-0 opacity-0 mt-4 text-[10px] bg-blue-900 text-white text-center transition-all duration-100 ease-in-out rounded-md",
     tooltipVisibility: `${
       moveStack.length === 0 || !activeRound || !isHumanTurn || undidPrevMove
         ? "hidden"
         : ""
     }`,
-    tooltipHoverLg: "lg:group-hover:opacity-100 lg:group-hover:mt-12",
+    tooltipHoverLg:
+      "lg:group-hover:opacity-100 lg:group-hover:h-max lg:group-hover:w-max px-2 lg:group-hover:-mt-6",
   };
 
   const styles = useStyles(className);
@@ -73,15 +76,19 @@ export default function UndoButton() {
           UNDO
         </span>
       </button>
-      <span
-        style={{ fontFamily: "Jura" }}
-        className={styles("singleUndoWarning")}
-      >
-        CAN ONLY UNDO ONE MOVE
-      </span>
-      <span style={{ fontFamily: "Jura" }} className={styles("tooltip")}>
-        CLICK TO REVERT LAST MOVE
-      </span>
+      <Tooltip
+        label="CAN ONLY UNDO ONE MOVE PER TURN"
+        hide={moveStack.length === 0 || !undidPrevMove}
+      />
+      <Tooltip
+        label="CLICK TO REVERT LAST MOVE"
+        hide={
+          moveStack.length === 0 ||
+          !activeRound ||
+          !isHumanTurn ||
+          undidPrevMove
+        }
+      />
     </div>
   );
 }

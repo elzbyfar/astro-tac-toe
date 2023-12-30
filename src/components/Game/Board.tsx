@@ -12,7 +12,9 @@ export default function Board() {
   const className = {
     container: `duration-300 transition-all overflow-hidden box-border w-60 flex flex-wrap`,
     containerMd: `md:w-[420px]`,
-    containerVisibility: `${activeGame ? "h-60 my-8 md:h-[420px]" : "h-0"}`,
+    containerVisibility: `${
+      activeGame ? "h-60 mt-3 mb-8 md:h-[420px]" : "h-0"
+    }`,
   };
   const styles = useStyles(className);
 

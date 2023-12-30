@@ -19,6 +19,7 @@ import PlayAgainButton from "./PlayAgainButton.tsx";
 import Select from "./Select.tsx";
 import { BOARDS, GAME_DIFFICULTIES } from "../../lib/constants.ts";
 import type { ChangeEvent } from "react";
+import Instructions from "./Instructions.tsx";
 
 export default function Game() {
   const activeGame = useStore(activeGameStore);
@@ -64,6 +65,7 @@ export default function Game() {
       <div className={styles("card")}>
         <Title />
         <ExitButton />
+
         <div className={styles("selectWrapper")}>
           <Select
             label="MODE"
@@ -85,6 +87,7 @@ export default function Game() {
             }))}
           />
         </div>
+        <Instructions />
         <Board />
         <div className={styles("inGameButtons")}>
           <UndoButton />
