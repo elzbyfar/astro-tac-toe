@@ -11,6 +11,8 @@ export const resultStore = atom<Result>(INITIAL_RESULT);
 export const statsStore = atom<Stats>(INITIAL_STATS);
 export const hintStore = atom<number | null>(null);
 export const boardStore = atom<Board>(BOARDS[0]);
+export const chatStore = atom<{ speaker: string; content: string }[]>([]);
+export const isChatOpenStore = atom<boolean>(false);
 
 // Define actions to update the stores
 export const setActiveGame = (value: boolean) => activeGameStore.set(value);
@@ -23,3 +25,6 @@ export const setResult = (result: Result) => resultStore.set(result);
 export const setStats = (stats: Stats) => statsStore.set(stats);
 export const setHint = (hint: number | null) => hintStore.set(hint);
 export const setBoard = (board: Board) => boardStore.set(board);
+export const setChat = (chat: { speaker: string; content: string }[]) =>
+  chatStore.set(chat);
+export const setIsChatOpen = (value: boolean) => isChatOpenStore.set(value);

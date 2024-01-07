@@ -19,8 +19,11 @@ import {
   setResult,
   setMoveStack,
   setIsHumanTurn,
+  chatStore,
+  setChat,
 } from "../../lib/globalState.ts";
 import "../../styles/square.css";
+import { getEndGameMessage } from "../../api/openAI.ts";
 
 export default function Square({ index: squareIndex }: { index: number }) {
   const activeGame = useStore(activeGameStore);
@@ -32,24 +35,40 @@ export default function Square({ index: squareIndex }: { index: number }) {
   const stats = useStore(statsStore);
   const hint = useStore(hintStore);
   const board = useStore(boardStore);
+  const chat = useStore(chatStore);
+
+  const handleEndMessage = async (outcome: string) => {
+    // const response = await getEndGameMessage(
+    //   outcome,
+    //   moveStack.length,
+    //   board,
+    //   stats,
+    // );
+    // if (response) {
+    //   setChat([...chat, { speaker: "UNBEATABLE", content: response }]);
+    // }
+  };
 
   const gameIsOver = (player: string, updatedStack: Move[]) => {
     const winningSquares = findWinner(player, updatedStack, board.area);
+    const emptySquares = getEmptySquares(updatedStack, board.area);
+    let outcome = "";
+
     if (winningSquares) {
+      outcome = player === "X" ? "Win" : "Lose";
       handleUpdateStats({
         status: player === "X" ? "HUMAN WINS" : "AI WINS",
         winningSquares,
       });
-      return true;
-    }
-
-    const emptySquares = getEmptySquares(updatedStack, board.area);
-    if (emptySquares.length === 0) {
-      // This is a tie
+    } else if (emptySquares.length === 0) {
+      outcome = "Tie";
       handleUpdateStats({
         status: "TIE",
         winningSquares: [],
       });
+    }
+    if (winningSquares || emptySquares.length === 0) {
+      handleEndMessage(outcome);
       return true;
     }
     return false;

@@ -1,10 +1,13 @@
 import { useStore } from "@nanostores/react";
 import {
   activeGameStore,
+  activeRoundStore,
   statsStore,
   setStats,
   boardStore,
   setBoard,
+  chatStore,
+  isChatOpenStore,
 } from "../../lib/globalState.ts";
 import { useStyles } from "../../hooks";
 
@@ -20,11 +23,15 @@ import Select from "./Select.tsx";
 import { BOARDS, GAME_DIFFICULTIES } from "../../lib/constants.ts";
 import type { ChangeEvent } from "react";
 import Instructions from "./Instructions.tsx";
+import ChatBox from "./ChatBox.tsx";
 
 export default function Game() {
   const activeGame = useStore(activeGameStore);
+  const activeRound = useStore(activeRoundStore);
   const stats = useStore(statsStore);
   const board = useStore(boardStore);
+  const chat = useStore(chatStore);
+  const isChatOpen = useStore(isChatOpenStore);
 
   const className = {
     card: "relative w-[90%] -translate-y-16 transition-all duration-300 bg-slate-50 z-10 py-6 flex flex-col rounded-md justify-evenly items-center opacity-100",
@@ -50,7 +57,7 @@ export default function Game() {
 
   function handleBoardChange(event: ChangeEvent<HTMLSelectElement>) {
     const value = Number(event.target.value);
-    if (value > 9 && stats.difficulty === "AI") {
+    if (value > 9 && stats.difficulty === "UNBEATABLE") {
       setStats({
         ...stats,
         difficulty: "SMART",
@@ -65,7 +72,6 @@ export default function Game() {
       <div className={styles("card")}>
         <Title />
         <ExitButton />
-
         <div className={styles("selectWrapper")}>
           <Select
             label="MODE"
@@ -74,7 +80,7 @@ export default function Game() {
             menuOptions={GAME_DIFFICULTIES.map((difficulty, idx) => ({
               value: idx,
               label: difficulty,
-              disabled: board.area > 9 && difficulty === "AI",
+              disabled: board.area > 9 && difficulty === "UNBEATABLE",
             }))}
           />
           <Select
@@ -89,6 +95,16 @@ export default function Game() {
         </div>
         <Instructions />
         <Board />
+        {/* {activeGame &&
+          !activeRound &&
+          chat.map((message, idx) => {
+            return (
+              <div key={idx}>
+                <span>{message.speaker}</span>
+                <span>{message.content}</span>
+              </div>
+            );
+          })} */}
         <div className={styles("inGameButtons")}>
           <UndoButton />
           <PlayAgainButton />
@@ -97,6 +113,9 @@ export default function Game() {
         <StartButton />
         <ActiveStats />
       </div>
+
+      {/* chat box */}
+      <ChatBox />
     </>
   );
 }

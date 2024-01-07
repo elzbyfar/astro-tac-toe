@@ -13,7 +13,7 @@ async function findBestMove(
 
   let choice = -1;
   if (emptySpots.length) {
-    if (forHuman || difficulty === "AI") {
+    if (forHuman || difficulty === "UNBEATABLE") {
       const result = await new Promise<ScoredMove>(
         (resolve: (value: ScoredMove) => void) => {
           setTimeout(() => {

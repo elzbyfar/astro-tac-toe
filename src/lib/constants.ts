@@ -1,7 +1,7 @@
 import type { Result, Board, Stats } from "./types";
 import { getWinPaths } from "../utils";
 
-export const GAME_DIFFICULTIES: string[] = ["DUMB", "SMART", "AI"];
+export const GAME_DIFFICULTIES: string[] = ["DUMB", "SMART", "UNBEATABLE"];
 
 export const BOARDS: Board[] = [
   { area: 9, label: "3 x 3", connectToWin: 3 },
@@ -44,3 +44,49 @@ export const PATHS_BY_INDEX: { [key: number]: { [key: number]: number[][] } } =
     25: ALL_PATHS[25].pathsByIndex,
     49: ALL_PATHS[49].pathsByIndex,
   };
+
+export const MOCK_CHAT = [
+  {
+    id: 1,
+    author: "ghost",
+    timestamp: new Date().toLocaleTimeString(),
+    content:
+      "Things that chat gpt things of after a victory can be funny or mean or both, but not nice",
+  },
+  {
+    id: 2,
+    author: "human",
+    timestamp: new Date().toLocaleTimeString(),
+    content: "What's your problem?",
+  },
+  {
+    id: 3,
+    author: "ghost",
+    timestamp: new Date().toLocaleTimeString(),
+    content: "I don't have a problem, you have a problem",
+  },
+  {
+    id: 4,
+    author: "human",
+    timestamp: new Date().toLocaleTimeString(),
+    content: "I don't have a problem, you have a problem",
+  },
+  {
+    id: 5,
+    author: "ghost",
+    timestamp: new Date().toLocaleTimeString(),
+    content: "I don't have a problem, you have a problem",
+  },
+  {
+    id: 6,
+    author: "ghost",
+    timestamp: new Date().toLocaleTimeString(),
+    content: "I don't have a problem, you have a problem",
+  },
+  {
+    id: 7,
+    author: "ghost",
+    timestamp: new Date().toLocaleTimeString(),
+    content: "I don't have a problem, you have a problem",
+  },
+];
