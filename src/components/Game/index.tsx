@@ -6,7 +6,7 @@ import {
   setStats,
   boardStore,
   setBoard,
-  chatStore,
+  chatLogStore,
   isChatOpenStore,
 } from "../../lib/globalState.ts";
 import { useStyles } from "../../hooks";
@@ -30,7 +30,7 @@ export default function Game() {
   const activeRound = useStore(activeRoundStore);
   const stats = useStore(statsStore);
   const board = useStore(boardStore);
-  const chat = useStore(chatStore);
+  const chatLog = useStore(chatLogStore);
   const isChatOpen = useStore(isChatOpenStore);
 
   const className = {

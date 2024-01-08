@@ -46,49 +46,49 @@ export const PATHS_BY_INDEX: { [key: number]: { [key: number]: number[][] } } =
   };
 
 export const MOCK_CHAT = [
-  {
-    id: 1,
-    author: "ghost",
-    timestamp: new Date().toLocaleTimeString(),
-    content:
-      "Things that chat gpt things of after a victory can be funny or mean or both, but not nice",
-  },
-  {
-    id: 2,
-    author: "human",
-    timestamp: new Date().toLocaleTimeString(),
-    content:
-      "What's your problem? I don't have a problem, you have a problem. Things that chat gpt things of after a victory can be funny or mean or both, but not nice. Things that chat gpt things of after a victory can be funny",
-  },
-  {
-    id: 3,
-    author: "ghost",
-    timestamp: new Date().toLocaleTimeString(),
-    content:
-      "I don't have a problem, you have a problem. Things that chat gpt things of after a victory can be funny or mean or both, but not nice. Things that chat gpt things of after a victory can be funny or mean or both, but not nice",
-  },
-  {
-    id: 4,
-    author: "human",
-    timestamp: new Date().toLocaleTimeString(),
-    content: "I don't have a problem, you have a problem",
-  },
-  {
-    id: 5,
-    author: "ghost",
-    timestamp: new Date().toLocaleTimeString(),
-    content: "I don't have a problem, you have a problem",
-  },
-  {
-    id: 6,
-    author: "ghost",
-    timestamp: new Date().toLocaleTimeString(),
-    content: "I don't have a problem, you have a problem",
-  },
-  {
-    id: 7,
-    author: "ghost",
-    timestamp: new Date().toLocaleTimeString(),
-    content: "I don't have a problem, you have a problem",
-  },
+  // {
+  //   id: 1,
+  //   author: "ghost",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content:
+  //     "Things that chat gpt things of after a victory can be funny or mean or both, but not nice",
+  // },
+  // {
+  //   id: 2,
+  //   author: "human",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content:
+  //     "What's your problem? I don't have a problem, you have a problem. Things that chat gpt things of after a victory can be funny or mean or both, but not nice. Things that chat gpt things of after a victory can be funny",
+  // },
+  // {
+  //   id: 3,
+  //   author: "ghost",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content:
+  //     "I don't have a problem, you have a problem. Things that chat gpt things of after a victory can be funny or mean or both, but not nice. Things that chat gpt things of after a victory can be funny or mean or both, but not nice",
+  // },
+  // {
+  //   id: 4,
+  //   author: "human",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content: "I don't have a problem, you have a problem",
+  // },
+  // {
+  //   id: 5,
+  //   author: "ghost",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content: "I don't have a problem, you have a problem",
+  // },
+  // {
+  //   id: 6,
+  //   author: "ghost",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content: "I don't have a problem, you have a problem",
+  // },
+  // {
+  //   id: 7,
+  //   author: "ghost",
+  //   timestamp: new Date().toLocaleTimeString(),
+  //   content: "I don't have a problem, you have a problem",
+  // },
 ];

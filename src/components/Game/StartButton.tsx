@@ -19,7 +19,7 @@ export default function StartButton() {
   };
 
   const className = {
-    wrapper: "group box-border justify-center select-none",
+    wrapper: "group box-border justify-center select-none pt-4",
     wrapperVisibility: `${activeGame ? "hidden" : "flex"}`,
     button: `relative flex items-center tracking-widest py-1 text-base h-full z-10 duration-100 ease-in-out text-blue-900 font-extralight`,
     buttonMd: "md:bg-none",

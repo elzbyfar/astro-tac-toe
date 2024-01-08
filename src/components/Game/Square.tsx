@@ -19,8 +19,8 @@ import {
   setResult,
   setMoveStack,
   setIsHumanTurn,
-  chatStore,
-  setChat,
+  chatLogStore,
+  setChatLog,
 } from "../../lib/globalState.ts";
 import "../../styles/square.css";
 import { getEndGameMessage } from "../../api/openAI.ts";
@@ -35,7 +35,7 @@ export default function Square({ index: squareIndex }: { index: number }) {
   const stats = useStore(statsStore);
   const hint = useStore(hintStore);
   const board = useStore(boardStore);
-  const chat = useStore(chatStore);
+  const chat = useStore(chatLogStore);
 
   const handleEndMessage = async (outcome: string) => {
     // const response = await getEndGameMessage(
@@ -45,7 +45,7 @@ export default function Square({ index: squareIndex }: { index: number }) {
     //   stats,
     // );
     // if (response) {
-    //   setChat([...chat, { speaker: "UNBEATABLE", content: response }]);
+    //   setChatLog([...chat, { speaker: "UNBEATABLE", content: response }]);
     // }
   };
 
