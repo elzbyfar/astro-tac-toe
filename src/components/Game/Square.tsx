@@ -38,16 +38,11 @@ export default function Square({ index: squareIndex }: { index: number }) {
   const chatLog = useStore(chatLogStore);
 
   const handleEndMessage = async (outcome: string) => {
-    const response = await getEndGameMessage(
-      outcome,
-      moveStack.length,
-      board,
-      stats,
-    );
+    const response = await getEndGameMessage(outcome, chatLog);
     if (response) {
       const chatEntry: ChatEntry = {
         id: (chatLog.at(-1)?.id || 0) + 1,
-        author: "ghost",
+        author: "chat-gpt",
         content: response,
         timestamp: new Date().toLocaleTimeString(),
       };
@@ -61,13 +56,13 @@ export default function Square({ index: squareIndex }: { index: number }) {
     let outcome = "";
 
     if (winningSquares) {
-      outcome = player === "X" ? "Win" : "Lose";
+      outcome = player === "X" ? "Won" : "Lost";
       handleUpdateStats({
         status: player === "X" ? "HUMAN WINS" : "AI WINS",
         winningSquares,
       });
     } else if (emptySquares.length === 0) {
-      outcome = "Tie";
+      outcome = "Tied";
       handleUpdateStats({
         status: "TIE",
         winningSquares: [],

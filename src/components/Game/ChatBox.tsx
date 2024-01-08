@@ -115,7 +115,7 @@ export default function ChatBox() {
         {chatLog.map((message, mIndex) => (
           <div key={mIndex}>
             <div className="my-2">
-              {message.author === "ghost" ? (
+              {message.author === "chat-gpt" ? (
                 <div
                   style={{
                     borderTopRightRadius: "20px",
@@ -131,9 +131,7 @@ export default function ChatBox() {
                         alt="chat-gpt-avatar"
                         className="w-8 z-10"
                       />
-                      <span className="font-bold text-[10px]">
-                        {message.author.toUpperCase()}
-                      </span>
+                      <span className="font-bold text-[10px]">GHOST</span>
                     </div>
                     <div className="flex flex-col w-full">
                       <span className="text-sm pb-6">{message.content}</span>
@@ -186,6 +184,7 @@ export default function ChatBox() {
           onKeyDown={handleKeyDown}
           value={chatInput}
           maxLength={140}
+          placeholder="Trash talk your opponent..."
           className={`${
             chatInput.length ? "" : "h-10"
           } text-area transition-all duration-200 pl-2 pr-[38px] py-2 rounded-lg w-full border-[1px] border-gray-500 resize-none`}

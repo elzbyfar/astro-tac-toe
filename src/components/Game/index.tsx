@@ -27,6 +27,7 @@ import ChatBox from "./ChatBox.tsx";
 
 export default function Game() {
   const activeGame = useStore(activeGameStore);
+  const activeRound = useStore(activeRoundStore);
   const stats = useStore(statsStore);
   const board = useStore(boardStore);
   const chatLog = useStore(chatLogStore);
@@ -94,16 +95,6 @@ export default function Game() {
         </div>
         <Instructions />
         <Board />
-        {/* {activeGame &&
-          !activeRound &&
-          chat.map((message, idx) => {
-            return (
-              <div key={idx}>
-                <span>{message.speaker}</span>
-                <span>{message.content}</span>
-              </div>
-            );
-          })} */}
         <div className={styles("inGameButtons")}>
           <UndoButton />
           <PlayAgainButton />
@@ -112,9 +103,7 @@ export default function Game() {
         <StartButton />
         <ActiveStats />
       </div>
-
-      {/* chat box */}
-      <ChatBox />
+      {activeGame && <ChatBox />}
     </>
   );
 }

@@ -50,7 +50,7 @@ export type HumanPaths = {
 
 export type ChatEntry = {
   id: number;
-  author: "human" | "ghost";
+  author: "human" | "chat-gpt";
   timestamp: string;
   content: string;
 };

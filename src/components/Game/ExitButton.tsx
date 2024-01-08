@@ -8,6 +8,7 @@ import {
   setMoveStack,
   setActiveRound,
   activeRoundStore,
+  setChatLog,
 } from "../../lib/globalState";
 import { INITIAL_RESULT, INITIAL_STATS } from "../../lib/constants";
 import { useStyles } from "../../hooks";
@@ -23,6 +24,7 @@ export default function ExitButton() {
     setActiveRound(false);
     setActiveGame(false);
     setMoveStack([]);
+    setChatLog([]);
     setResult(INITIAL_RESULT);
     setStats({
       ...INITIAL_STATS,
