@@ -2,7 +2,7 @@ import { useStore } from "@nanostores/react";
 import { findBestMove, getEmptySquares } from "../../utils";
 import { findWinner } from "../../utils";
 import { useStyles } from "../../hooks";
-import type { Move, Result } from "../../lib/types";
+import type { ChatEntry, Move, Result } from "../../lib/types";
 import {
   activeGameStore,
   activeRoundStore,
@@ -35,18 +35,24 @@ export default function Square({ index: squareIndex }: { index: number }) {
   const stats = useStore(statsStore);
   const hint = useStore(hintStore);
   const board = useStore(boardStore);
-  const chat = useStore(chatLogStore);
+  const chatLog = useStore(chatLogStore);
 
   const handleEndMessage = async (outcome: string) => {
-    // const response = await getEndGameMessage(
-    //   outcome,
-    //   moveStack.length,
-    //   board,
-    //   stats,
-    // );
-    // if (response) {
-    //   setChatLog([...chat, { speaker: "UNBEATABLE", content: response }]);
-    // }
+    const response = await getEndGameMessage(
+      outcome,
+      moveStack.length,
+      board,
+      stats,
+    );
+    if (response) {
+      const chatEntry: ChatEntry = {
+        id: (chatLog.at(-1)?.id || 0) + 1,
+        author: "ghost",
+        content: response,
+        timestamp: new Date().toLocaleTimeString(),
+      };
+      setChatLog([...chatLog, chatEntry]);
+    }
   };
 
   const gameIsOver = (player: string, updatedStack: Move[]) => {

@@ -48,4 +48,11 @@ export type HumanPaths = {
   [key: number]: number[][];
 };
 
+export type ChatEntry = {
+  id: number;
+  author: "human" | "ghost";
+  timestamp: string;
+  content: string;
+};
+
 export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;

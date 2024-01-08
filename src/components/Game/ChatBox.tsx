@@ -4,16 +4,22 @@ import {
   setIsChatOpen,
   chatInputStore,
   setChatInput,
+  chatLogStore,
+  setChatLog,
 } from "../../lib/globalState";
-import { MOCK_CHAT } from "../../lib/constants";
 import { useStyles } from "../../hooks";
 import ghost from "../../assets/ghost.png";
 import human from "../../assets/human.png";
 import send from "../../assets/send.svg";
+import open from "../../assets/open.svg";
+import minimize from "../../assets/minimize.svg";
+
+import type { ChatEntry } from "../../lib/types";
 
 export default function ChatBox() {
   const isChatOpen = useStore(isChatOpenStore);
   const chatInput = useStore(chatInputStore);
+  const chatLog = useStore(chatLogStore);
 
   const className = {
     chatBox:
@@ -32,6 +38,7 @@ export default function ChatBox() {
 
   const handleInputResize = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+
     incomingHeight?: number,
   ) => {
     const { scrollHeight, value } = e.target;
@@ -69,14 +76,14 @@ export default function ChatBox() {
       | React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
-    const id = MOCK_CHAT.at(-1)?.id;
-    const chatEntry = {
+    const id = chatLog.at(-1)?.id;
+    const chatEntry: ChatEntry = {
       id: id || 0 + 1,
       author: "human",
       timestamp: new Date().toLocaleTimeString(),
       content: chatInput,
     };
-    MOCK_CHAT.push(chatEntry);
+    setChatLog([...chatLog, chatEntry]);
 
     const input = document.querySelector(".text-area");
     if (input) {
@@ -90,7 +97,7 @@ export default function ChatBox() {
     <div className={styles("chatBox")} onLoad={handleScroll}>
       <div
         onClick={() => setIsChatOpen(!isChatOpen)}
-        className="flex h-8 w-full px-2 items-center gap-x-1 border-b-[1px] border-b-slate-300 select-none"
+        className="relative flex h-8 w-full px-2 items-center gap-x-1 border-b-[1px] border-b-slate-300 select-none hover:cursor-pointer"
       >
         <img
           src={ghost.src}
@@ -98,9 +105,14 @@ export default function ChatBox() {
           className="w-6 h-6 rounded-full "
         />
         <span className="text-[13px] font-semibold">Ghost in the Machine</span>
+        <img
+          src={isChatOpen ? minimize.src : open.src}
+          alt={isChatOpen ? "minimize-icon" : "open-chat-icon"}
+          className="w-6 absolute right-4 translate-y-[1px]"
+        />
       </div>
       <div className="chat-log overflow-y-scroll h-auto max-h-[19rem] px-3 pt-2">
-        {MOCK_CHAT.map((message, mIndex) => (
+        {chatLog.map((message, mIndex) => (
           <div key={mIndex}>
             <div className="my-2">
               {message.author === "ghost" ? (
