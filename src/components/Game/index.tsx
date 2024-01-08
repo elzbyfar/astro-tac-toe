@@ -27,7 +27,6 @@ import ChatBox from "./ChatBox.tsx";
 
 export default function Game() {
   const activeGame = useStore(activeGameStore);
-  const activeRound = useStore(activeRoundStore);
   const stats = useStore(statsStore);
   const board = useStore(boardStore);
   const chatLog = useStore(chatLogStore);
